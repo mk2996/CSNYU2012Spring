@@ -1,0 +1,19 @@
+{ "ClientAccounts" : [
+    { "ID" : 123 , 
+      "Name" : "Acct 1", 
+      "Value" : 5000},
+     { "ID" : 124,
+       "Name" : "Acct 2",     
+       "Value" : 5000},
+      { "ID" : 125,
+       "Name" : "Acct 3",     
+       "Value" : 2000},
+      { "ID" : 126,
+       "Name" : "Acct 4",     
+       "Value" : 7000},
+      { "ID" : 127,
+       "Name" : "Acct 5",     
+       "Value" : 10000}
+       
+     ]
+}

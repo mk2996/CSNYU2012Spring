@@ -57,8 +57,6 @@ var grid = Ext.create('Ext.grid.Panel', {
 });
 
 
-
-
 function loadData(jsonfile){
 	var clientDataStore = Ext.create('Ext.data.Store', {
 		model: 'ClientAccount',
