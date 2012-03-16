@@ -3,9 +3,9 @@ window.onload = function() {
 	var txt = r.print(10, 50, "print", r.getFont("Museo"), 30).attr({fill: "#fff"});
 
 	// Define the ending colour, which is white
-	xr = 150; // Red value
-	xg = 240; // Green value
-	xb = 240; // Blue value
+	xr = 255; // Red value
+	xg = 255; // Green value
+	xb = 255; // Blue value
 
 	r.customAttributes.segment = function(x, y, r, a1, a2, pos, n, yr, yg, yb) {
 
@@ -33,9 +33,13 @@ window.onload = function() {
 
 	
 	// Define the starting colour #f32075
-	yr = 51; // Red value
+	yr = 0; // Red value
 	yg = 0; // Green value
-	yb = 153; // Blue value
+	yb = 255; // Blue value
+
+    xr = 230; // Red value
+    xg = 230; // Green value
+    xb = 255; // Blue value
 
 	var data_revenue = [ 36699660, 25672502, 10846684, 13895064, 9977039,
 			11503921, 10092243, 16446015, 23130213, 11315673 ], paths = r.set(), total, start, bg = r
@@ -84,6 +88,10 @@ window.onload = function() {
 	yr = 255; // Red value
 	yg = 0; // Green value
 	yb = 0; // Blue value
+
+    xr = 255; // Red value
+    xg = 230; // Green value
+    xb = 230; // Blue value
 
 	var data_trade_vol = [ 15916642203, 4319397380, 1307512583, 1110599486,
 			2291433884, 4406505581, 5816711511, 3356391020, 1779901481,
@@ -139,9 +147,13 @@ window.onload = function() {
 	}
 
 	// Define the starting colour #f32075
-	yr = 255; // Red value
-	yg = 0; // Green value
-	yb = 51; // Blue value
+	yr = 0; // Red value
+	yg = 255; // Green value
+	yb = 0; // Blue value
+
+    xr = 230; // Red value
+    xg = 255; // Green value
+    xb = 230; // Blue value
 	var data_trade_expense = [ 366996.60, 256725.02, 108466.84, 138950.64,
 			99770.39, 115039.21, 100922.43, 164460.15, 231302.13, 113156.73 ], paths = r
 			.set(), total, start, bg = r.circle(200, 200, 0).attr({
@@ -206,6 +218,10 @@ window.onload = function() {
 	yr = 100; // red value
 	yg = 100; // green value
 	yb = 153; // blue value
+
+    xr = 167; // Red value
+    xg = 167; // Green value
+    xb = 255; // Blue value
 
 	var data_meeting = [ 170, 42, 12, 46, 30, 85, 46, 22, 29, 21 ], paths = r
 			.set(), total, start, bg = r.circle(200, 200, 0).attr({
