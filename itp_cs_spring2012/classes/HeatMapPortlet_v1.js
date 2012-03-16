@@ -33,9 +33,14 @@ function loadData(jsonfile){
 Ext.define('ClientAccount', {
 	extend: 'Ext.data.Model',
 	fields: [
-	         {name: 'ID',     type: 'int'},
-	         {name: 'Name',     type: 'string'},
-	         {name: 'Value',   type: 'int'}
+	         {name: 'CLIENT_ID',     type: 'int'},
+	         {name: 'CLIENT_NAME',     type: 'string'},
+	         {name: 'LAST_TRADE_DATE', type: 'string'},
+	         {name: 'TRADE_VOLUME',   type: 'int'},
+	         {name: 'REVENUE',   type: 'int'},
+	         {name: 'TRAVEL_ENTERTAINMENT',   type: 'int'},
+	         {name: 'EVENT_COUNT',   type: 'int'},
+	         {name: 'MEETING_COUNT',   type: 'int'}
 	         ]
 });
 
@@ -47,7 +52,7 @@ function loadData(jsonfile){
 			url : jsonfile,
 			reader: {
 				type : 'json',
-				root : 'ClientAccounts'
+				root : 'Coverage'
 			}
 		},
 		autoLoad: true
@@ -73,25 +78,40 @@ Ext.define('Ext.app.HeatMapPortlet', {
 
     	Ext.apply(this, {
             height: this.height,
-            store: loadData('accounts.json'),
+            store: loadData('coverage2.json'),
             stripeRows: true,
             columnLines: true,
             columns: [{
-                id       :'Id',
-                text   : 'ID',
-                flex: 1,
-                sortable : true,
-                dataIndex: 'ID'
-            },{
                 text   : 'Client',
                 width    : 75,
                 sortable : true,
-                dataIndex: 'Name'
+                dataIndex: 'CLIENT_NAME'
             },{
-                text   : 'Value',
+                text   : 'Trade Volume',
                 width    : 75,
                 sortable : true,
-                dataIndex: 'Value'
+                dataIndex: 'TRADE_VOLUME'
+            },{
+                text   : 'Revenue',
+                width    : 75,
+                sortable : true,
+                dataIndex: 'REVENUE'
+                
+            },{
+                text   : 'Travel & Entertainment',
+                width    : 75,
+                sortable : true,
+                dataIndex: 'TRAVEL_ENTERTAINMENT'
+            },{
+                text   : 'Event Count',
+                width    : 75,
+                sortable : true,
+                dataIndex: 'EVENT_COUNT'
+            },{
+                text   : 'Meeting Count',
+                width    : 75,
+                sortable : true,
+                dataIndex: 'MEETING_COUNT'
             }]
         });
 

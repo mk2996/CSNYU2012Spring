@@ -1,0 +1,29 @@
+{ "Coverage" : [
+  { "expense" :
+    [{ "Name" : "Acct 1", 
+      "Value" : 250000},
+     { "Name" : "Acct 2",     
+       "Value" : 70000},
+      { "Name" : "Acct 3",     
+       "Value" : 75000},
+      { "Name" : "Acct 4",     
+        "Value" : 90000},
+      { "Name" : "Acct 5",     
+        "Value" : 120000}
+       
+     ]},
+  { "revenue" :
+    [{ 
+      "Name" : "Acct 1", 
+      "Value" : 250000},
+     { "Name" : "Acct 2",     
+       "Value" : 70000},
+      { "Name" : "Acct 3",     
+       "Value" : 75000},
+      { "Name" : "Acct 4",     
+        "Value" : 90000},
+      { "Name" : "Acct 5",     
+        "Value" : 120000}
+       
+     ]}]
+}

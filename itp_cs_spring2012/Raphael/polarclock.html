@@ -1,0 +1,54 @@
+<html>
+  <head>
+    <script type="text/javascript" src="/itp/Raphael/raphael-min.js"></script>
+  </head>
+  <body>
+    <script type="text/javascript">
+        window.onload = function () {
+                var r = Raphael("holder");
+
+
+        // Function to get the max value in an Array
+        Array.max= function(array) {
+        return Math.max.apply(Math,array);
+        };
+        // Function to get the min value in an Array
+        Array.min= function(array) {
+        return Math.min.apply(Math,array);
+        };
+        // Function to get the max value in an Array
+        Array.total= function(array) {
+        var total=0.0;
+        for(var index=0;index<array.length;index++) {
+        total+=array[index];
+        }
+        return total;
+        };
+        //Create jsGraphics object
+        var revenue_arr=[36699660,237817,2293,2161,6812,9310,162410,907,162611,8618],
+         paths = r.set(),
+                    total,
+                    start,
+                    bg = r.circle(200, 200, 0).attr({stroke: "#fff", "stroke-width": 4});
+
+        var color_arr=["aqua","black","blue","fuchsia","green","gray","lime","maroon","navy","olive","purple","red","silver","teal","white","yellow"]
+        var total_rev=Array.total(revenue_arr);
+        var total_min=Array.min(revenue_arr);
+        var total_max=Array.max(revenue_arr);
+        
+        var start_angle=0;
+        for(var i=0;i<revenue_arr.length;i++) {
+      
+            var val = 360 / total_rev * revenue_arr[i];
+            (function (i, val) {
+                paths.push(r.path().attr({segment: [200, 200, 1, start, start + val], stroke: "#fff"}).click(function () {
+                }));
+            })(i, val);
+            start += val;
+
+        }
+        }
+    </script>
+    <div id="holder" style="overflow:hidden;position:relative;width:600px;height:300px;"></div>
+  </body>
+</html>
