@@ -3,8 +3,6 @@
 //Ext.Ajax.timeout = 90000;
 
 Ext.namespace("app");
-Ext.require('Ext.tab.*');
-
 
 /**
  * Container class to initialize CMT application. create a singleton instance
@@ -28,8 +26,7 @@ app.Container = function() {
 		init: function() {
 			var _this = this;
 			Ext.QuickTips.init();
-			alert('created SouthPanel');
-
+		
 			_this.northPanel = _this.createNorthPanel();
 			_this.southPanel = _this.createSouthPanel();
 
@@ -65,7 +62,7 @@ app.Container.createNorthPanel = function () {
             },
 
             items:[{
-                title:'Clients',
+                title:'Employees',
                 autoHeight: true,
                 autoWidth   : true,
                 bodyPadding: 10,
@@ -97,18 +94,14 @@ app.Container.createNorthPanel = function () {
  */
 app.Container.createSouthPanel = function () {
   var _this = this;
-
   
-  var clientTab = new app.southpanel.ClientsTab({
-     
-  });
-
   var cmtSouthPanel = Ext.create('Ext.form.Panel', {
         renderTo: 'docbody',
         title   : 'South Panel',
         region : 'south',
         autoHeight: true,
         bodyPadding: 10,
+        activeTab: 0,
         defaults: {
             labelWidth: 100
         },
@@ -122,6 +115,7 @@ app.Container.createSouthPanel = function () {
             },
 
             items:[{
+            	  id: 'clientAccounts',
                 title:'Client Accounts',
                 autoHeight: true,
                 autoWidth   : true,
@@ -130,14 +124,47 @@ app.Container.createSouthPanel = function () {
                     anchor: '100%',
                     labelWidth: 100
                 }
-            },clientTab
-            ]
-        }
+            },{
+            	id: 'portal',
+            	title:'Portal',
+            	xtype: 'portalpanel',
+              autoHeight: true,
+              autoWidth   : true,
+              bodyPadding: 10,
+              defaults: {
+                  anchor: '100%',
+                  labelWidth: 100
+              },
+              items:[{
+              	title: 'Client Data',
+                id: 'data-portlet',
+                xtype: 'portlet'
+              },{
+                title: 'Coverage',
+                id: 'coverage-portlet',
+                xtype: 'coverage'
+              }]
+              
+           
+        }]
+  }
   });
         
 
   return cmtSouthPanel;
 };
+
+
+app.Container.createCoverageWidget = function(){
+	 var _this = this;
+  
+  var coverageWidget = Ext.create('Ext.app.Portlet', {
+    
+  });
+  
+  return coverageWidget;
+
+}
 
 
 

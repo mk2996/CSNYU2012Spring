@@ -15,7 +15,7 @@
  * 
  * return clientDataStore; }
  */
-
+/*
 Ext.define('ClientAccount', {
 			extend : 'Ext.data.Model',
 			fields : [{
@@ -118,4 +118,4 @@ function createTemplate(row_count, col_count){
 		table += "</tr>"
 	}
 	return table;
-}
+}*/

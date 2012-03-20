@@ -29,7 +29,7 @@ function loadData(jsonfile){
 
 	return clientDataStore;
 }*/
-
+/*
 Ext.define('ClientAccount', {
 	extend: 'Ext.data.Model',
 	fields: [
@@ -117,5 +117,5 @@ Ext.define('Ext.app.HeatMapPortlet', {
 
         this.callParent(arguments);
     }
-});
+});*/
 
