@@ -1,0 +1,262 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<!--[if  IE 6]>  <html> <![endif]-->
+<!--[if IE 8]> <html class="ie8"> <![endif]-->
+<!--[if !IE]><!--> <html> <!--<![endif]-->  
+
+
+<head>
+<!-- <meta http-equiv="X-UA-Compatible" content="chrome=1"> -->
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
+<title>CMT</title>
+<!-- 3 to 4 Migration Guide: 
+		The default Ext theme, same as Ext 3 
+<link rel="stylesheet" type="text/css" href="ext-3.3.1/resources/css/ext-all.css" />
+-->
+<link rel="stylesheet" type="text/css" href="ext-4.0.7/resources/css/ext-all.css" />
+<link rel="stylesheet" type="text/css" href="css/ext4crm.css" />
+<!--   <link rel="stylesheet" type="text/css" href="ext-4.0.0/resources/css/ext-sandbox.css"/>
+-->
+<!-- <link rel="stylesheet" type="text/css" href="ext-3.3.1/resources/css/xtheme-gray.css" />  
+<link rel="stylesheet" type="text/css" href="css/crm.css" />
+<link rel="stylesheet" type="text/css" href="css/dialerRibbon.css" />
+<link rel="stylesheet" type="text/css" href="js/ext-3.3.1/ux/fileuploadfield/css/fileuploadfield.css">
+<link rel="stylesheet" type="text/css" href="js/ext-3.3.1/ux/boxselect/boxselect.css" media="screen"  />
+<link rel="stylesheet" type="text/css" href="js/northpanel/taskmanager/css/taskmanager.css">
+<link rel="stylesheet" type="text/css" href="js/ext-3.3.1/ux/gridfilters/css/GridFilters.css">
+<link rel="stylesheet" type="text/css" href="js/ext-3.3.1/ux/gridfilters/css/RangeMenu.css">
+-->
+<link rel="shortcut icon" href="./images/favicon.ico" />
+<!--  3 to 4 Migration Guide:
+		As noted in the Overview Guide, adapters have gone away in Ext 4. 
+	  	Existing adapter file includes (including the default Ext adapter) should simply be removed.
+<script type="text/javascript" src="ext-3.3.1/adapter/ext/ext-base-debug.js"></script> -->
+
+<!-- 3 to 4 Migration Guide:
+		Ext 4 framework -->
+<script type="text/javascript" src="ext-4.0.7/ext-all-debug.js"></script>
+
+<!-- 3 to 4 Migration Guide:
+		Ext 3 Compatibility (remove after migration is complete) -->
+<script type="text/javascript" src="ext-4.0.7/compatibility/ext3-core-compat.js"></script>
+<script type="text/javascript" src="ext-4.0.7/compatibility/ext3-compat.js"></script>
+
+
+<!--   script type="text/javascript" src="ext-4.0.7/builds/ext-all-sandbox-debug.js"></script>
+-->
+<!--  
+<script type="text/javascript" src="js/ext-3.3.1/ux/BufferView.js"></script>
+-->
+<script type="text/javascript" src="js/ext-3.3.1/ux/portal.js"></script>
+<script type="text/javascript" src="js/ext-3.3.1/ux/portalcolumn.js"></script>
+<script type="text/javascript" src="js/ext-3.3.1/ux/portlet.js"></script>
+<script type="text/javascript" src="js/ext-3.3.1/ux/Ext.ux.plugin.PagingToolbarResizer.js"></script>
+<script type="text/javascript" src="js/ext-3.3.1/ux/Ext.ux.state.SimpleHttpProvider.js"></script>
+<script type="text/javascript" src="js/ext-3.3.1/ux/PagingRowNumberer.js"></script>
+<script type="text/javascript" src="js/ext-3.3.1/ux/JsonReaderWithDefault.js"></script>
+<script type="text/javascript" src="js/ext-3.3.1/ux/StoreWithDefault.js"></script>
+<script type="text/javascript" src="js/ext-3.3.1/ux/Ext.grid.GridView.js"></script>
+<script type="text/javascript" src="js/ext-3.3.1/ux/Ext.ux.JsonArrayStore.js"></script>
+<script type="text/javascript" src="js/ext-3.3.1/ux/Ext.ux.MultiSortJsonStore.js"></script>
+<script type="text/javascript" src="js/ext-3.3.1/ux/Ext.ux.GMapPanel.js"></script>
+<script type="text/javascript" src="js/ext-3.3.1/ux/Ext.ux.grid.FilterRow.js"></script>
+
+<script type="text/javascript" src="js/ext-3.3.1/ux/gridfilters/filter/Filter.js"></script>
+<script type="text/javascript" src="js/ext-3.3.1/ux/gridfilters/filter/BooleanFilter.js"></script>
+<script type="text/javascript" src="js/ext-3.3.1/ux/gridfilters/filter/DateFilter.js"></script>
+<script type="text/javascript" src="js/ext-3.3.1/ux/gridfilters/filter/ListFilter.js"></script>
+<script type="text/javascript" src="js/ext-3.3.1/ux/gridfilters/filter/NumericFilter.js"></script>
+<script type="text/javascript" src="js/ext-3.3.1/ux/gridfilters/filter/StringFilter.js"></script>
+<script type="text/javascript" src="js/ext-3.3.1/ux/gridfilters/menu/ListMenu.js"></script>
+<script type="text/javascript" src="js/ext-3.3.1/ux/gridfilters/menu/RangeMenu.js"></script>
+
+<script type="text/javascript" src="js/ext-3.3.1/ux/gridfilters/GridFilters.js"></script>
+
+
+
+
+
+<script type="text/javascript" src="./js/ext-3.3.1/ux/Ext.ux.form.XCheckbox.js"></script>
+<script type="text/javascript" src="js/ext-3.3.1/ux/boxselect/Ext.ux.BoxSelect.js"></script>
+<script type="text/javascript" src="js/ext-3.3.1/ux/fileuploadfield/FileUploadField.js"></script>
+<script type="text/javascript" src="js/ext-3.3.1/ux/PagingStore.js" ></script>
+<script type="text/javascript" src="js/ext-3.3.1/ux/PagingToolbar.js" ></script>
+<script type="text/javascript" src="js/ext-3.3.1/ux/DateRange.js" ></script>
+<script type="text/javascript" src="js/ext-3.3.1/ux/NumericRange.js" ></script>
+<script type="text/javascript" src="js/util/util.js"></script>
+<script type="text/javascript" src="js/serviceConfig.js"></script>
+<script type="text/javascript" src="js/util/OutlookCrm.js"></script>
+<script type="text/javascript" src="js/util/DialerRibbon.js"></script>
+<script type="text/javascript" src="lib/pagebus.js"></script>
+<script type="text/javascript" src="lib/OpenAjax.js"></script>
+<script type="text/javascript" src="lib/CTI.js"></script>
+
+<!-- North Panel -->
+<script type="text/javascript" src="js/northpanel/ClientsBufferedGrid.js"></script>
+<script type="text/javascript" src="js/northpanel/AccountsBufferedGrid.js"></script>
+<script type="text/javascript" src="js/northpanel/CalendarTab.js"></script>
+<script type="text/javascript" src="js/northpanel/ClientsTab.js"></script>
+
+<script type="text/javascript" src="js/northpanel/taskmanager/TaskManagerTab.js"></script>
+<script type="text/javascript" src="js/northpanel/taskmanager/TaskManagerGrid.js"></script>
+<script type="text/javascript" src="js/northpanel/taskmanager/TaskManagerTabFilter.js"></script>
+<script type="text/javascript" src="js/northpanel/taskmanager/TaskManagerViewFilters.js"></script>
+<script type="text/javascript" src="js/northpanel/taskmanager/Preferences.js"></script>
+<script type="text/javascript" src="js/northpanel/taskmanager/CreateTask.js"></script>
+
+<script type="text/javascript" src="js/northpanel/ClientsTabManageLists.js"></script>
+<script type="text/javascript" src="js/northpanel/TabStripPlugin.js"></script>
+<script type="text/javascript" src="js/northpanel/ClientsTabFilter.js"></script>
+<script type="text/javascript" src="js/northpanel/RadioColumn.js"></script>
+<script type="text/javascript" src="js/northpanel/EditListWindow.js"></script>
+<script type="text/javascript" src="js/northpanel/EditContactsWindow.js"></script>
+<script type="text/javascript" src="js/northpanel/EditClientsWindow.js"></script>
+<script type="text/javascript" src="js/northpanel/EditColumnsWindow.js"></script>
+<script type="text/javascript" src="js/northpanel/ClientsSelectionPanel.js"></script>
+<!--  
+<script type="text/javascript" src="js/ext-4.0.7/northpanel/ContactsGrid.js"></script>
+-->
+
+<!-- <script type="text/javascript" src="js/northpanel/ViewEditSignature.js"></script>
+<script type="text/javascript" src="js/northpanel/SendEmail.js"></script> -->
+
+
+<!-- South Panel -->
+<script type="text/javascript" src="js/southpanel/ContactsPortalTab.js"></script>
+<script type="text/javascript" src="js/southpanel/AccountsPortalTab.js"></script>
+
+
+<script type="text/javascript" src="js/southpanel/widgets/Coverage.js"></script>
+
+<script type="text/javascript" src="js/southpanel/widgets/contactprofile/ContactProfile.js"></script>
+<script type="text/javascript" src="js/southpanel/widgets/contactprofile/ContactEmploymentHistory.js"></script>
+<script type="text/javascript" src="js/southpanel/widgets/contactprofile/GlobalCreditData.js"></script>
+<script type="text/javascript" src="js/southpanel/widgets/clientprofile/AddressViewer.js" ></script>
+<script src="js/southpanel/widgets/clientprofile/AccountMappingPanel.js" type="text/javascript"></script>
+<script src="js/southpanel/widgets/clientprofile/ClientProfileGCData.js" type="text/javascript"></script>
+<script type="text/javascript" src="js/southpanel/widgets/clientprofile/ClientProfile.js" ></script>
+
+<script type="text/javascript" src="js/southpanel/widgets/research/ResearchToolbar.js"></script>
+<script type="text/javascript" src="js/southpanel/widgets/research/ResearchProfile.js"></script>
+<script type="text/javascript" src="js/southpanel/widgets/research/ResearchInterestGrid.js"></script>
+<script type="text/javascript" src="js/southpanel/widgets/research/ResearchSentInPastGrid.js"></script>
+<script type="text/javascript" src="js/southpanel/widgets/research/InterestAuditGrid.js"></script>
+<script type="text/javascript" src="js/southpanel/widgets/research/ResearchProfileBar.js"></script>
+<script type="text/javascript" src="js/southpanel/widgets/research/Research.js"></script>
+<script type="text/javascript" src="js/southpanel/widgets/research/ResearchSearchBar.js"></script>
+<script type="text/javascript" src="js/southpanel/widgets/research/ResearchMaximizeWidget.js"></script>
+<script type="text/javascript" src="js/southpanel/widgets/CoverageAccount.js"></script>
+<script type="text/javascript" src="js/southpanel/widgets/ContactAccounts.js"></script>
+<script type="text/javascript" src="js/southpanel/widgets/Documents.js"></script>
+<script type="text/javascript" src="js/southpanel/widgets/Notes.js"></script>
+
+<script type="text/javascript" src="js/debug/config.js"></script>
+<script type="text/javascript" src="js/debug/meta.js"></script>
+<script type="text/javascript" src="js/debug/meta.Utils.js"></script>
+<script type="text/javascript" src="js/debug/meta.Logger.js"></script>
+<script type="text/javascript" src="js/debug/meta.PerformanceManager.js"></script>
+<script type="text/javascript" src="js/debug/meta.controls.DrilldownMenu.js"></script>
+<script type="text/javascript" src="js/util/AppTracker.js"></script>
+<script type="text/javascript" src="js/cmt.js"></script>
+
+
+
+<!--script type="text/javascript" src="build/cmt.js"></script-->
+
+<script type="text/javascript">
+	var META_DEV_MODE = false;
+	var META_ENABLE_EXT_CONSOLE_LOGGING = false;
+	var META_ENABLE_INSTRUMENTATION = false;
+
+	var META_COLLAPSE_LOG_PANEL = false;
+	var META_SHOW_HEADER = true;
+</script>
+
+</head>
+<body xonbeforeunload="ConfirmClose()">
+<script type="text/javascript">
+
+	var constantsSrc = '/CMLM/getUserState.do?loginId=' + util.getURLParam("loginId") + '&userName=' + util.getURLParam("userName");
+	var activityParams = util.getURLParam("addActivityParams");
+    if (activityParams){
+    	constantsSrc += '&addActivityParams=true';
+    }
+
+	//truncate document.domain to remove cross origination scripting error
+	if (/Firefox/.test(navigator.userAgent) && /^localhost\b/.test(self.location.host))
+		document.domain = 'localhost';
+	else {
+		var grps = /\.([-_\w]+\.[-_\w]+)$/.exec(document.domain);
+		if (grps) document.domain = grps[1];
+	}
+
+	if (typeof console == 'undefined') {
+		console = {
+			log: function (message) { },
+			dir: function (obj) { },
+			info: function (message, obj) { }
+		}
+	}
+
+  Ext.onReady(app.Container.init, app.Container);
+
+</script>
+<script>
+// the last
+document.write([
+'<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=', {
+'rapportdev2.csintra.net:1975': 'ABQIAAAADcXbEF7twzxcsE-YYf74OBQj6GxyU0Np43--TDgfel63hHzrhxRprMZ_df9uMuJ6AFjBfjFKPilesw',
+'rapportdev2.csintra.net:19775': 'ABQIAAAADcXbEF7twzxcsE-YYf74OBQ07kBDLKApjPkjKuUoD6JXByaKYBSS3wxOeIQ4Zpp1EJblHf7xjqp9Lg',
+'rapportqa2.csintra.net:1975': 'ABQIAAAADcXbEF7twzxcsE-YYf74OBQrJQMBaSKAa7SiciNNYUC1TP9B4BRnhnxD7XfImTQMyDvfK5NwgwzieA',
+ 'localhost' : 'ABQIAAAADcXbEF7twzxcsE-YYf74OBT2yXp_ZAY8_ufC3CFXhHIE1NvwkxRTiU2MyNYbk_ZV9TxvWogTamzDnw',
+ 'clientdashboard-dev.csintra.net' : 'ABQIAAAADcXbEF7twzxcsE-YYf74OBSGG5v7gN0uylpb835v-P4rl9v7HxRuTu-NwBeip0yrlexFFq0mhJ3I6A',
+ 'clientdashboard-qa2.csintra.net' : 'ABQIAAAADcXbEF7twzxcsE-YYf74OBTkJ8idcYJVxHNxqyYzrbKisVon9hSr5s9XiEOPDYOCYyaD8ppSIexjuQ',
+ 'rapportuat.csintra.net:1973': 'ABQIAAAADcXbEF7twzxcsE-YYf74OBRld1RkmF1kVwFaH2ZYt3UDspm6yRT0GTfNpn0C6P2YwQGlxK9cwLCYGg',
+ 'rapport.csintra.net': 'ABQIAAAADcXbEF7twzxcsE-YYf74OBR4S28uP1au6dKr_MqZ6SzTD1ipthTi5jSUxx8NlBUEPMqf1CnGpcLiww',
+ 'clientmanagementtools.csintra.net': 'ABQIAAAADcXbEF7twzxcsE-YYf74OBR2BsrXxw9stL0svm4I36rdEj_XthT0PsARPQVXxlRGjNv1D-jhmOG5eQ',
+ 'rapportdev.csintra.net':'ABQIAAAADcXbEF7twzxcsE-YYf74OBRMiLxniiOwCvJ9aj2OBlnDzQqOYxT2pXXELR5uQmtl0-WQIFk5-xP1Gg',
+ 'rapportdev.csintra.net:1973':'ABQIAAAADcXbEF7twzxcsE-YYf74OBTu27aWSDJacPaV9RtY8wcBTGLh2xR8IF1_THW0DGhwtpZNk-6bu_gOVA',
+ 'rapportqa.csintra.net': 'ABQIAAAADcXbEF7twzxcsE-YYf74OBRT46uCMORy66EAY7ntcfy-HVPo-xSBnlmEdqStenUwNA_AweEJwJEszg',
+ 'rapportqa.csintra.net:1973': 'ABQIAAAADcXbEF7twzxcsE-YYf74OBTct8gKUoC7GaQsrA2ndsZR2_LewxSShHlDS_6VdnCteVUo9WgqkBwIUg',
+ 'csintra.net' : 'ABQIAAAADcXbEF7twzxcsE-YYf74OBR2BsrXxw9stL0svm4I36rdEj_XthT0PsARPQVXxlRGjNv1D-jhmOG5eQ',
+ 'clientmanagementtools-dev1.csintra.net:2042':'ABQIAAAADcXbEF7twzxcsE-YYf74OBQOTP5o4-cReD7LNVpXFd1__On6kBRl2DJnetV1l1JcCkvXEEXDSXqNwA',
+ 'clientmanagementtools-dev2.csintra.net:20421':'ABQIAAAADcXbEF7twzxcsE-YYf74OBRU_aAnxb9fmlwyx7mi_UZxGV_JAhRPVMNCsgSS2UeJOeWzeeComFrl1g',
+ 'clientmanagementtools-qa1.csintra.net:20421':'ABQIAAAADcXbEF7twzxcsE-YYf74OBQvQw2eQSMZu3P5sC8fsucJRczpnBQU8-Px0ES5dpZRM1G1YVQ54uXtIg',
+ 'clientmanagementtools-qa2.csintra.net:20422':'ABQIAAAADcXbEF7twzxcsE-YYf74OBRcJtWrTAO46N3IPE1biejevsnDMxQbUJoZfeZUNdHi0xiTVnx1Hfaf6w',
+ 'clientmanagementtools-uat.csintra.net:2042':'ABQIAAAADcXbEF7twzxcsE-YYf74OBSUgw1v6N2bNeWH0iODjRRuQPjqZhQOUtW_68tRwe8c4W978UanzYoAzg'
+ }[window.location.host],
+'" type="text/javascript"><\/script>'
+].join(''));
+
+ window.onload = function () { 
+ 
+ document.onselectstart = function () {
+ if(!event.srcElement.isTextEdit){
+ return ! (event.shiftKey||event.ctrlKey);
+ }
+ 
+ }
+ } 
+  
+
+</script>
+
+
+
+<form id="exportToExcelForm" target="_self">
+	
+	<input type="hidden" name="listName" id="listName"/>
+	
+	
+	
+	<input type="hidden" name="totalCount" 	  id="totalCount"/>
+	<input type="hidden" name="colIds" 	 id="colIds"/>
+	<input type="hidden" name="colNames" id="colNames"/>
+	<input type="hidden" name="queriesKey" id="queriesKey"/>
+	
+
+</form>
+
+</body>
+</html>
