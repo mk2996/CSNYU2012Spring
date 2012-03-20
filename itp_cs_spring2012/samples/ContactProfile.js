@@ -14,7 +14,7 @@ app.southpanel.widgets.contactprofile.ContactProfile = Ext.extend(Ext.Panel, {
 	initComponent: function() {
 		Ext.apply(this, {
 			title:'Contact Profile',
-			cls:'contact-profile-panel',
+			//cls:'contact-profile-panel',
 			layout:'fit',
 			anchor : '100%',
 			frame : true,
