@@ -3,6 +3,7 @@ Ext.define('Ext.app.coverageWidget', {
     extend: 'Ext.panel.Panel',
     alias: 'widget.coverage',
     
+    title: 'Coverage',
     frame: true,
     closable: true,
     collapsible: true,
@@ -22,25 +23,24 @@ Ext.define('Ext.app.coverageWidget', {
         type : 'maximize',
         handler : function() {
           alert('click maximize');
+          Ext.getCmp(this).show()
           
-          var window = new Ext.Window({
-           title: 'Maximized Window'
-          });
-
         }
       }],
     
     cls: 'x-portlet',
     initComponent: function() {
-		  
-        Ext.apply(this, {
+    	
+          Ext.apply(this, {
             height: 300,
-            layout: 'fit'
+            layout: 'fit',
+            html: "<div id='holder'></div>"
             
         });
 
         this.callParent(arguments);
     },
+    contentEl: 'holder',
 
     // Override Panel's default doClose to provide a custom fade out effect
     // when a portlet is removed from the portal

@@ -95,6 +95,8 @@ app.Container.createNorthPanel = function () {
 app.Container.createSouthPanel = function () {
   var _this = this;
   
+    _this.coverageWidget = Ext.create('Ext.app.coverageWidget');
+  
   var cmtSouthPanel = Ext.create('Ext.form.Panel', {
         renderTo: 'docbody',
         title   : 'South Panel',
@@ -137,10 +139,10 @@ app.Container.createSouthPanel = function () {
                   labelWidth: 100
               },
               items:[{
-                title: 'Coverage',
-                id: 'coverage-portlet',
-                xtype: 'coverage'
-              },{
+              	title: 'Client Data',
+                id: 'data-portlet',
+                xtype: 'portlet'
+              },_this.coverageWidget,{
                   title: 'Overall',
                   id: 'overall-portlet',
                   xtype: 'overallportlet'

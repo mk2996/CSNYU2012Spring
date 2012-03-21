@@ -1,4 +1,4 @@
-window.onload = function() {
+draw = function() {
 	var r = Raphael("holder");
 	var txt = r.print(10, 50, "print", r.getFont("Museo"), 30).attr({fill: "#fff"});
 
@@ -266,6 +266,8 @@ window.onload = function() {
 		})(i, val);
 		start += val;
 	}
+	
+	return r;
 
 };
 
