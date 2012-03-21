@@ -22,8 +22,8 @@ app.Container = function() {
 		viewport: null,
 		currentSouthTabId: 'contacts-grid-contactsPortalTab',
 		currentNorthtTabId: 'contacts-grid-contactsPortalTab',
-
-		init: function() {
+		
+				init: function() {
 			var _this = this;
 			Ext.QuickTips.init();
 		
@@ -69,7 +69,21 @@ app.Container.createNorthPanel = function () {
                 defaults: {
                     anchor: '100%',
                     labelWidth: 100
+                },
+                items: [{
+                	xtype: 'button',
+                	text: 'Top 10',
+                	handler: function(){
+                		alert('Top 10');
+                	}
+                },{
+                	xtype: 'button',
+                	text: 'Bottom 10',
+                	handler: function(){
+                		alert('bottm 10');
+                	}
                 }
+                ]
             },{
             	title: 'Calendar',
             	autoHeight: true,
@@ -95,8 +109,11 @@ app.Container.createNorthPanel = function () {
 app.Container.createSouthPanel = function () {
   var _this = this;
   
-    _this.coverageWidget = Ext.create('Ext.app.coverageWidget');
-  
+  _this.clientDataWidget = Ext.create('Ext.app.ClientDataWidget',{
+    datafile : 'data/coverage2.json'
+  })
+  _this.coverageWidget = Ext.create('Ext.app.coverageWidget');
+    
   var cmtSouthPanel = Ext.create('Ext.form.Panel', {
         renderTo: 'docbody',
         title   : 'South Panel',
@@ -139,10 +156,12 @@ app.Container.createSouthPanel = function () {
                   labelWidth: 100
               },
               items:[{
-              	title: 'Client Data',
-                id: 'data-portlet',
-                xtype: 'portlet'
-              },_this.coverageWidget,{
+              	id : 'col1',
+              	items: [
+                _this.clientDataWidget, 
+                _this.coverageWidget
+                ]
+              },{
                   title: 'Overall',
                   id: 'overall-portlet',
                   xtype: 'overallportlet'
@@ -158,18 +177,9 @@ app.Container.createSouthPanel = function () {
 };
 
 
-app.Container.createCoverageWidget = function(){
-	 var _this = this;
-  
-  var coverageWidget = Ext.create('Ext.app.Portlet', {
-    
-  });
-  
-  return coverageWidget;
-
+updateClientData = function(param){
+	
 }
-
-
 
 
 

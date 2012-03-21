@@ -44,16 +44,18 @@ function loadData(jsonfile) {
   return clientDataStore;
 }
 
-Ext.define('Ext.app.coverageWidget', {
-    extend: 'Ext.panel.Panel',
-    alias: 'widget.coverage',
+Ext.define('Ext.app.ClientDataWidget', {
+    extend: 'Ext.grid.Panel',
+    alias: 'widget.clientData',
+    requires : ['Ext.data.JsonStore'],
     
-    title: 'Coverage',
+    title: 'Client Data',
     frame: true,
     closable: true,
     collapsible: true,
     animCollapse: true,
     draggable: true,
+    id: 'ClientDataDisplay',
     tools : [{
         type : 'close',
         handler : function() {
@@ -75,16 +77,16 @@ Ext.define('Ext.app.coverageWidget', {
   
       cls: 'x-portlet',
     initComponent: function() {
-    	  //alert(this.datafile)  
-//    	  var data = loadData(this.datafile);
+        //alert(this.datafile)  
+//        var data = loadData(this.datafile);
 //        var records = data.getRange();
 
 //        alert(records.length);
     
           Ext.apply(this, {
-            height: 300,
+            height: 500,
             layout: 'fit',
-             store: loadData(this.datafile),
+            store: loadData(this.datafile),
             stripeRows: true,
             columnLines: true,
             columns: [{
@@ -130,6 +132,7 @@ Ext.define('Ext.app.coverageWidget', {
     doClose: function() {
         alert('doClose');
     }
-	
-	
+  
+  
 });
+

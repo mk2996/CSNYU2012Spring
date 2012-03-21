@@ -1,3 +1,5 @@
+
+
 Ext.define('Ext.app.OverallPortlet', {
 
     extend: 'Ext.panel.Panel',
@@ -51,42 +53,18 @@ Ext.define('Ext.app.OverallPortlet', {
     ],
 
     loadData: function(jsonfile){
-//        var _clientDataStore = Ext.create('Ext.data.Store', {
-//            model: 'ClientAccount',
-//            proxy: {
-//                type: 'ajax',
-//                url : jsonfile,
-//                reader: {
-//                    type : 'json',
-//                    root : 'ClientAccounts'
-//                }
-//            },
-//            autoLoad: true
-//        });
-//
-//        return _clientDataStore;
-
-        var storeData = Ext.create('Ext.data.JsonStore', {
-            fields: ['ID', 'Name', 'Value'],
-            data: [
-                { "ID" : 123 ,
-                    "Name" : "Acct 1",
-                    "Value" : 250000},
-                { "ID" : 124,
-                    "Name" : "Acct 2",
-                    "Value" : 70000},
-                { "ID" : 125,
-                    "Name" : "Acct 3",
-                    "Value" : 75000},
-                { "ID" : 126,
-                    "Name" : "Acct 4",
-                    "Value" : 90000},
-                { "ID" : 127,
-                    "Name" : "Acct 5",
-                    "Value" : 120000}
-
-            ]})
-        ;
+        var storeData = Ext.create('Ext.data.Store', {
+            model : 'ClientAccount',
+            proxy : {
+              type : 'ajax',
+              url : jsonfile,
+              reader : {
+                type : 'json',
+                root : 'Coverage'
+              }
+            },
+            autoLoad : true
+          });
         return storeData;
     },
 
@@ -118,74 +96,11 @@ Ext.define('Ext.app.OverallPortlet', {
 
 
 
-                items:[{
-
-                        xtype: 'fieldset',
-                        title: 'Filter',
-
-                        collapsible: true,
-                        defaults: {
-                            labelWidth: 89,
-                            anchor: '99%',
-                            layoutConfig : {
-                                type :'vbox',
-                                align : 'stretch',
-                                pack : 'start'
-                            }
-
-                        },
-                        items: [
-
-                            this._nameField,
-                            {
-                                xtype: 'fieldcontainer',
-                                fieldLabel: 'Date Range',
-                                combineErrors: true,
-                                msgTarget : 'side',
-
-                                layoutConfig : {
-                                    type :'vbox',
-                                    align : 'stretch',
-                                    pack : 'start',
-                                    defaultMargins: {top: 0, right: 0, bottom: 5, left: 0}
-                                },
-                                defaults: {
-                                    flex: 1,
-                                    hideLabel: true
-                                },
-                                items: [{
-                                    xtype     : 'datefield',
-                                    name      : 'startDate',
-                                    fieldLabel: 'Start',
-                                    margin: '0 0 5 0'
-                                },
-                                    {
-                                        xtype     : 'datefield',
-                                        name      : 'endDate',
-                                        fieldLabel: 'End'
-                                    }
-                                ]
-                            },
-
-
-                            {
-                                xtype : 'fieldcontainer',
-                                combineErrors: true,
-                                msgTarget: 'side',
-                                defaults: {
-                                    hideLabel: true
-                                },
-                                items : [
-                                    this._fieldComboBox
-                                ]
-                            }
-
-                        ]
-                    },
+                items:[
                         {
                             xtype: 'fieldset',
                             id : 'chart',
-                            title: 'Client Account Break Down' ,
+                            title: 'Client Account Break Down By Revenue' ,
                             collapsible: false,
                             defaults: {
                                 labelWidth: 89,
@@ -224,7 +139,7 @@ Ext.define('Ext.app.OverallPortlet', {
             theme: 'Base:gradients',
             series: [{
                 type: 'pie',
-                field: 'Value',
+                field: 'REVENUE',
                 showInLegend: true,
                 donut: false,
                 tips: {
@@ -241,10 +156,10 @@ Ext.define('Ext.app.OverallPortlet', {
                         var total = 0;
                         var value = 0;
                         this._clientAccountData.each(function(rec) {
-                            value = rec.get('Value');
+                            value = rec.get('REVENUE');
                             total += value;
                         });
-                        this.setTitle(storeItem.get('Name') + ': ' +storeItem.get('Value')+ ' ('+Math.round(storeItem.get('Value') / total * 100) + '%)');
+                        this.setTitle(storeItem.get('CLIENT_NAME') + ': ' +storeItem.get('REVENUE')+ ' ('+Math.round(storeItem.get('Value') / total * 100) + '%)');
 //			    		        				   gridStore.loadData(pieModel);
 
                         this._gridPop.setSize(480,130);
@@ -256,7 +171,7 @@ Ext.define('Ext.app.OverallPortlet', {
                     }
                 },
                 label: {
-                    field: 'Name',
+                    field: 'CLIENT_NAME',
                     display: 'rotate',
                     contrast: true,
                     font: '18px Arial'
@@ -329,12 +244,12 @@ Ext.define('Ext.app.OverallPortlet', {
             width: 480,
             columns: [
                 {
-                    text   : 'name',
-                    dataIndex: 'name'
+                    text   : 'Client: ',
+                    dataIndex: 'CLIENT_NAME'
                 },
                 {
-                    text   : 'data',
-                    dataIndex: 'data'
+                    text   : 'Revenue: ',
+                    dataIndex: 'REVENUE'
                 }
             ]
         });
@@ -364,14 +279,11 @@ Ext.define('Ext.app.OverallPortlet', {
 
     initComponent: function(){
 
-        this._clientAccountData = this.loadData('accounts.json');
+        this._clientAccountData = this.loadData('data/coverage_top10.json');
         this._gridStore = this.genGridStore();
         this._gridPop = this.genGridPop();
 
-        this._nameStr = 'John';
-        this._fieldComboBox = this.genFieldComboBox();
-        this._nameField = this.genNameField();
-
+     
         this._PieChart = this.genPieChart();
         this._form = this.genFormComponent();
 
