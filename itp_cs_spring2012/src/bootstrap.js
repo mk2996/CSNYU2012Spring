@@ -31,7 +31,7 @@ app.Container = function() {
 			_this.southPanel = _this.createSouthPanel();
 
 			var viewport = new Ext.Viewport({
-
+                autoScroll:true,
 				items:[ _this.northPanel, _this.southPanel]
 			});
 
@@ -102,6 +102,7 @@ app.Container.createSouthPanel = function () {
         autoHeight: true,
         bodyPadding: 10,
         activeTab: 0,
+
         defaults: {
             labelWidth: 100
         },
@@ -136,13 +137,13 @@ app.Container.createSouthPanel = function () {
                   labelWidth: 100
               },
               items:[{
-              	title: 'Client Data',
-                id: 'data-portlet',
-                xtype: 'portlet'
-              },{
                 title: 'Coverage',
                 id: 'coverage-portlet',
                 xtype: 'coverage'
+              },{
+                  title: 'Overall',
+                  id: 'overall-portlet',
+                  xtype: 'overallportlet'
               }]
               
            
