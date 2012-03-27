@@ -16,88 +16,103 @@ Ext.namespace("app");
  */
 app.Container = function() {
 	return {
-		id:'cmtViewPort',
-		northPanel: null,
-		clientSouthPanel: null,
-		viewport: null,
-		currentSouthTabId: 'contacts-grid-contactsPortalTab',
-		currentNorthtTabId: 'contacts-grid-contactsPortalTab',
-		
-				init: function() {
+		id : 'cmtViewPort',
+		northPanel : null,
+		clientSouthPanel : null,
+		viewport : null,
+		currentSouthTabId : 'contacts-grid-contactsPortalTab',
+		currentNorthtTabId : 'contacts-grid-contactsPortalTab',
+
+		init : function() {
 			var _this = this;
 			Ext.QuickTips.init();
-		
+
 			_this.northPanel = _this.createNorthPanel();
 			_this.southPanel = _this.createSouthPanel();
 
 			var viewport = new Ext.Viewport({
-                autoScroll:true,
-				items:[ _this.northPanel, _this.southPanel]
-			});
+						autoScroll : true,
+						items : [_this.northPanel, _this.southPanel]
+					});
 
 		}
 	};
 }();
 
-app.Container.createNorthPanel = function () {
+app.Container.createNorthPanel = function() {
 	var _this = this;
 
+	var cmtNorthPanel = Ext.create('Ext.form.Panel', {
+				renderTo : 'docbody',
+				title : 'North Panel',
+				region : 'north',
+				autoHeight : true,
+				bodyPadding : 10,
+				defaults : {
+					labelWidth : 100
+				},
 
- 	var cmtNorthPanel = Ext.create('Ext.form.Panel', {
-        renderTo: 'docbody',
-        title   : 'North Panel',
-        region : 'north',
-        autoHeight: true,
-        bodyPadding: 10,
-        defaults: {
-            labelWidth: 100
-        },
+				items : {
+					xtype : 'tabpanel',
+					plain : true,
+					activeTab : 0,
+					defaults : {
+						bodyStyle : 'padding:10px'
+					},
 
-        items: {
-            xtype:'tabpanel',
-            plain:true,
-            activeTab: 0,
-            defaults:{
-                bodyStyle:'padding:10px'
-            },
+					items : [{
+						title : 'Employees',
+						autoHeight : true,
+						autoWidth : true,
+						bodyPadding : 10,
+						defaults : {
+							anchor : '100%',
+							labelWidth : 100
+						},
+						items : [{
+							xtype : 'button',
+							text : 'Top 10 By Revenue',
+							handler : function() {
+								Ext.getCmp('client_data_widget').fireEvent(
+										'updatedata', 'top10ByRevenue');
+							}
+						}, {
+							xtype : 'button',
+							text : 'Bottom 10 By Revenue',
+							handler : function() {
+								Ext.getCmp('client_data_widget').fireEvent(
+										'updatedata', 'bottom10ByRevenue');
 
-            items:[{
-                title:'Employees',
-                autoHeight: true,
-                autoWidth   : true,
-                bodyPadding: 10,
-                defaults: {
-                    anchor: '100%',
-                    labelWidth: 100
-                },
-                items: [{
-                	xtype: 'button',
-                	text: 'Top 10',
-                	handler: function(){
-                		alert('Top 10');
-                	}
-                },{
-                	xtype: 'button',
-                	text: 'Bottom 10',
-                	handler: function(){
-                		alert('bottm 10');
-                	}
-                }
-                ]
-            },{
-            	title: 'Calendar',
-            	autoHeight: true,
-            	autoWidth: true,
-            	bodyPadding: 10,
-            	defaults: {
-            		anchor: '100%',
-            		labelWidth: 100
-            	}
-            }
-            ]
-        }
-	});
-        
+							}
+						}, {
+              xtype : 'button',
+              text : 'Top 10 By Expense',
+              handler : function() {
+                Ext.getCmp('client_data_widget').fireEvent(
+                    'updatedata', 'top10ByExpense');
+
+              }
+            }, {
+              xtype : 'button',
+              text : 'Bottom 10 By Expense',
+              handler : function() {
+                Ext.getCmp('client_data_widget').fireEvent(
+                    'updatedata', 'bottom10ByExpense');
+
+              }
+            }]
+					}, {
+						title : 'Calendar',
+						autoHeight : true,
+						autoWidth : true,
+						bodyPadding : 10,
+						defaults : {
+							anchor : '100%',
+							labelWidth : 100
+						}
+					}]
+				}
+			});
 
 	return cmtNorthPanel;
 };
@@ -106,84 +121,77 @@ app.Container.createNorthPanel = function () {
  * Create a south panel containing widgets
  * @return south panel
  */
-app.Container.createSouthPanel = function () {
-  var _this = this;
-  
-  _this.clientDataWidget = Ext.create('Ext.app.ClientDataWidget',{
-    datafile : 'data/coverage2.json'
-  })
-  _this.coverageWidget = Ext.create('Ext.app.coverageWidget');
-    
-  var cmtSouthPanel = Ext.create('Ext.form.Panel', {
-        renderTo: 'docbody',
-        title   : 'South Panel',
-        region : 'south',
-        autoHeight: true,
-        bodyPadding: 10,
-        activeTab: 0,
+app.Container.createSouthPanel = function() {
+	var _this = this;
 
-        defaults: {
-            labelWidth: 100
-        },
+	_this.clientDataWidget = Ext.create('Ext.app.ClientDataWidget', {
+				datafile : 'data/coverage2.json',
+				id : 'client_data_widget'
+			})
+	_this.coverageWidget = Ext.create('Ext.app.coverageWidget');
 
-        items: {
-            xtype:'tabpanel',
-            plain:true,
-            activeTab: 1,
-            defaults:{
-                bodyStyle:'padding:10px'
-            },
+	var cmtSouthPanel = Ext.create('Ext.form.Panel', {
+				renderTo : 'docbody',
+				title : 'South Panel',
+				region : 'south',
+				autoHeight : true,
+				bodyPadding : 10,
+				activeTab : 0,
 
-            items:[{
-            	  id: 'clientAccounts',
-                title:'Client Accounts',
-                autoHeight: true,
-                autoWidth   : true,
-                bodyPadding: 10,
-                defaults: {
-                    anchor: '100%',
-                    labelWidth: 100
-                }
-            },{
-            	id: 'portal',
-            	title:'Portal',
-            	xtype: 'portalpanel',
-              autoHeight: true,
-              autoWidth   : true,
-              bodyPadding: 10,
-              defaults: {
-                  anchor: '100%',
-                  labelWidth: 100
-              },
-              items:[{
-              	id : 'col1',
-              	items: [
-                _this.clientDataWidget, 
-                _this.coverageWidget
-                ]
-              },{
-                  title: 'Overall',
-                  id: 'overall-portlet',
-                  xtype: 'overallportlet'
-              }]
-              
-           
-        }]
-  }
-  });
-        
+				defaults : {
+					labelWidth : 100
+				},
 
-  return cmtSouthPanel;
+				listeners : {
+					showMaxRevenue : function() {
+					},
+					showMinRevenue : function() {
+					}
+				},
+
+				items : {
+					xtype : 'tabpanel',
+					plain : true,
+					activeTab : 1,
+					defaults : {
+						bodyStyle : 'padding:10px'
+					},
+
+					items : [{
+								id : 'clientAccounts',
+								title : 'Client Accounts',
+								autoHeight : true,
+								autoWidth : true,
+								bodyPadding : 10,
+								defaults : {
+									anchor : '100%',
+									labelWidth : 100
+								}
+							}, {
+								id : 'portal',
+								title : 'Portal',
+								xtype : 'portalpanel',
+								autoHeight : true,
+								autoWidth : true,
+								bodyPadding : 10,
+								defaults : {
+									anchor : '100%',
+									labelWidth : 100
+								},
+								items : [{
+									id : 'col1',
+									items : [_this.clientDataWidget,
+											_this.coverageWidget]
+								}, {
+									title : 'Overall',
+									id : 'overall-portlet',
+									xtype : 'overallportlet'
+								}]
+							}]
+				}
+			});
+
+	return cmtSouthPanel;
 };
-
-
-updateClientData = function(param){
-	
-}
-
-
-
-
-
 
 

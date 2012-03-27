@@ -1,0 +1,95 @@
+{
+  "Coverage": [
+    {
+      "CLIENT_ID": 183,
+      "CLIENT_NAME": "client_183",
+      "LAST_TRADE_DATE": "11/01/2011 00:00:00",
+      "TRADE_VOLUME": "173,700",
+      "REVENUE": "6,948",
+      "TRAVEL_ENTERTAINMENT": 868.50,
+      "EVENT_COUNT": 1,
+      "MEETING_COUNT": 25
+    }, {
+      "CLIENT_ID": 533,
+      "CLIENT_NAME": "client_533",
+      "LAST_TRADE_DATE": "12/07/2011 00:00:00",
+      "TRADE_VOLUME": "540,000",
+      "REVENUE": "23,280",
+      "TRAVEL_ENTERTAINMENT": 2909.95,
+      "EVENT_COUNT": 1,
+      "MEETING_COUNT": 25
+    }, {
+      "CLIENT_ID": 72,
+      "CLIENT_NAME": "client_72",
+      "LAST_TRADE_DATE": "08/31/2011 00:00:00",
+      "TRADE_VOLUME": "5,997,136",
+      "REVENUE": "20,478",
+      "TRAVEL_ENTERTAINMENT": 2662.16,
+      "EVENT_COUNT": 1,
+      "MEETING_COUNT": 26
+    }, {
+      "CLIENT_ID": 479,
+      "CLIENT_NAME": "client_479",
+      "LAST_TRADE_DATE": "02/01/2012 00:00:00",
+      "TRADE_VOLUME": "5,282,211",
+      "REVENUE": "34,213",
+      "TRAVEL_ENTERTAINMENT": null,
+      "EVENT_COUNT": 1,
+      "MEETING_COUNT": 26
+    }, {
+      "CLIENT_ID": 742,
+      "CLIENT_NAME": "client_742",
+      "LAST_TRADE_DATE": "02/01/2012 00:00:00",
+      "TRADE_VOLUME": "36,847,373",
+      "REVENUE": "171,075",
+      "TRAVEL_ENTERTAINMENT": null,
+      "EVENT_COUNT": 1,
+      "MEETING_COUNT": 26
+    }, {
+      "CLIENT_ID": 749,
+      "CLIENT_NAME": "client_749",
+      "LAST_TRADE_DATE": "02/01/2012 00:00:00",
+      "TRADE_VOLUME": "29,700,393",
+      "REVENUE": "445,222",
+      "TRAVEL_ENTERTAINMENT": null,
+      "EVENT_COUNT": 1,
+      "MEETING_COUNT": 26
+    }, {
+      "CLIENT_ID": 1003,
+      "CLIENT_NAME": "client_1003",
+      "LAST_TRADE_DATE": "02/01/2012 00:00:00",
+      "TRADE_VOLUME": "27,698,522",
+      "REVENUE": "1,521,173",
+      "TRAVEL_ENTERTAINMENT": null,
+      "EVENT_COUNT": 1,
+      "MEETING_COUNT": 26
+    }, {
+      "CLIENT_ID": 172,
+      "CLIENT_NAME": "client_172",
+      "LAST_TRADE_DATE": "01/12/2012 00:00:00",
+      "TRADE_VOLUME": "5,127,976",
+      "REVENUE": "43,767",
+      "TRAVEL_ENTERTAINMENT": null,
+      "EVENT_COUNT": 1,
+      "MEETING_COUNT": 27
+    }, {
+      "CLIENT_ID": 965,
+      "CLIENT_NAME": "client_965",
+      "LAST_TRADE_DATE": "01/09/2012 00:00:00",
+      "TRADE_VOLUME": "950,740",
+      "REVENUE": "50,030",
+      "TRAVEL_ENTERTAINMENT": null,
+      "EVENT_COUNT": 1,
+      "MEETING_COUNT": 27
+    }, {
+      "CLIENT_ID": 133,
+      "CLIENT_NAME": "client_133",
+      "LAST_TRADE_DATE": "02/01/2012 00:00:00",
+      "TRADE_VOLUME": "23,330,386",
+      "REVENUE": "54,428",
+      "TRAVEL_ENTERTAINMENT": null,
+      "EVENT_COUNT": 1,
+      "MEETING_COUNT": 27
+    }
+  ]
+}

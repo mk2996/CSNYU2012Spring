@@ -1,0 +1,185 @@
+{
+  "Coverage": [
+    {
+      "CLIENT_ID": 930,
+      "CLIENT_NAME": "client_930",
+      "LAST_TRADE_DATE": "02/01/2012 00:00:00",
+      "TRADE_VOLUME": "5,816,711,511",
+      "REVENUE": "10,092,243",
+      "TRAVEL_ENTERTAINMENT": 100922.43,
+      "EVENT_COUNT": 46,
+      "MEETING_COUNT": "2,323"
+    }, {
+      "CLIENT_ID": 771,
+      "CLIENT_NAME": "client_771",
+      "LAST_TRADE_DATE": "02/01/2012 00:00:00",
+      "TRADE_VOLUME": "1,110,599,486",
+      "REVENUE": "13,895,064",
+      "TRAVEL_ENTERTAINMENT": 138950.64,
+      "EVENT_COUNT": 46,
+      "MEETING_COUNT": "2,292"
+    }, {
+      "CLIENT_ID": 957,
+      "CLIENT_NAME": "client_957",
+      "LAST_TRADE_DATE": "02/01/2012 00:00:00",
+      "TRADE_VOLUME": "447,849,702",
+      "REVENUE": "3,310,097",
+      "TRAVEL_ENTERTAINMENT": 33100.97,
+      "EVENT_COUNT": 33,
+      "MEETING_COUNT": "1,649"
+    }, {
+      "CLIENT_ID": 951,
+      "CLIENT_NAME": "client_951",
+      "LAST_TRADE_DATE": "02/01/2012 00:00:00",
+      "TRADE_VOLUME": "3,356,391,020",
+      "REVENUE": "16,446,015",
+      "TRAVEL_ENTERTAINMENT": 164460.15,
+      "EVENT_COUNT": 22,
+      "MEETING_COUNT": "1,117"
+    }, {
+      "CLIENT_ID": 831,
+      "CLIENT_NAME": "client_831",
+      "LAST_TRADE_DATE": "02/01/2012 00:00:00",
+      "TRADE_VOLUME": "422,867,704",
+      "REVENUE": "2,639,094",
+      "TRAVEL_ENTERTAINMENT": 26390.94,
+      "EVENT_COUNT": 16,
+      "MEETING_COUNT": "813"
+    }, {
+      "CLIENT_ID": 827,
+      "CLIENT_NAME": "client_827",
+      "LAST_TRADE_DATE": "01/31/2012 00:00:00",
+      "TRADE_VOLUME": "125,516,169",
+      "REVENUE": "708,587",
+      "TRAVEL_ENTERTAINMENT": null,
+      "EVENT_COUNT": 15,
+      "MEETING_COUNT": "766"
+    }, {
+      "CLIENT_ID": 474,
+      "CLIENT_NAME": "client_474",
+      "LAST_TRADE_DATE": "02/01/2012 00:00:00",
+      "TRADE_VOLUME": "163,893,726",
+      "REVENUE": "615,859",
+      "TRAVEL_ENTERTAINMENT": null,
+      "EVENT_COUNT": 15,
+      "MEETING_COUNT": "759"
+    }, {
+      "CLIENT_ID": 791,
+      "CLIENT_NAME": "client_791",
+      "LAST_TRADE_DATE": "01/31/2012 00:00:00",
+      "TRADE_VOLUME": "477,665,167",
+      "REVENUE": "2,172,599",
+      "TRAVEL_ENTERTAINMENT": null,
+      "EVENT_COUNT": 15,
+      "MEETING_COUNT": "755"
+    }, {
+      "CLIENT_ID": 961,
+      "CLIENT_NAME": "client_961",
+      "LAST_TRADE_DATE": "02/01/2012 00:00:00",
+      "TRADE_VOLUME": "553,702,566",
+      "REVENUE": "3,647,849",
+      "TRAVEL_ENTERTAINMENT": 36478.49,
+      "EVENT_COUNT": 15,
+      "MEETING_COUNT": "745"
+    }, {
+      "CLIENT_ID": 826,
+      "CLIENT_NAME": "client_826",
+      "LAST_TRADE_DATE": "02/01/2012 00:00:00",
+      "TRADE_VOLUME": "341,512,813",
+      "REVENUE": "6,357,386",
+      "TRAVEL_ENTERTAINMENT": 63573.86,
+      "EVENT_COUNT": 15,
+      "MEETING_COUNT": "732"
+    }, {
+      "CLIENT_ID": 1084,
+      "CLIENT_NAME": "client_1084",
+      "LAST_TRADE_DATE": "02/01/2012 00:00:00",
+      "TRADE_VOLUME": "434,304,977",
+      "REVENUE": "3,463,041",
+      "TRAVEL_ENTERTAINMENT": 34630.41,
+      "EVENT_COUNT": 14,
+      "MEETING_COUNT": "688"
+    }, {
+      "CLIENT_ID": 463,
+      "CLIENT_NAME": "client_463",
+      "LAST_TRADE_DATE": "02/01/2012 00:00:00",
+      "TRADE_VOLUME": "110,671,041",
+      "REVENUE": "868,012",
+      "TRAVEL_ENTERTAINMENT": null,
+      "EVENT_COUNT": 14,
+      "MEETING_COUNT": "677"
+    }, {
+      "CLIENT_ID": 1064,
+      "CLIENT_NAME": "client_1064",
+      "LAST_TRADE_DATE": "02/01/2012 00:00:00",
+      "TRADE_VOLUME": "878,459,230",
+      "REVENUE": "2,085,915",
+      "TRAVEL_ENTERTAINMENT": null,
+      "EVENT_COUNT": 13,
+      "MEETING_COUNT": "664"
+    }, {
+      "CLIENT_ID": 36,
+      "CLIENT_NAME": "client_36",
+      "LAST_TRADE_DATE": "02/01/2012 00:00:00",
+      "TRADE_VOLUME": "111,616,082",
+      "REVENUE": "3,916,727",
+      "TRAVEL_ENTERTAINMENT": 39167.27,
+      "EVENT_COUNT": 13,
+      "MEETING_COUNT": "659"
+    }, {
+      "CLIENT_ID": 774,
+      "CLIENT_NAME": "client_774",
+      "LAST_TRADE_DATE": "02/01/2012 00:00:00",
+      "TRADE_VOLUME": "136,353,305",
+      "REVENUE": "927,548",
+      "TRAVEL_ENTERTAINMENT": null,
+      "EVENT_COUNT": 13,
+      "MEETING_COUNT": "646"
+    }, {
+      "CLIENT_ID": 676,
+      "CLIENT_NAME": "client_676",
+      "LAST_TRADE_DATE": "02/01/2012 00:00:00",
+      "TRADE_VOLUME": "1,116,524,071",
+      "REVENUE": "7,130,509",
+      "TRAVEL_ENTERTAINMENT": 71305.09,
+      "EVENT_COUNT": 13,
+      "MEETING_COUNT": "641"
+    }, {
+      "CLIENT_ID": 135,
+      "CLIENT_NAME": "client_135",
+      "LAST_TRADE_DATE": "02/01/2012 00:00:00",
+      "TRADE_VOLUME": "1,252,720,728",
+      "REVENUE": "1,165,107",
+      "TRAVEL_ENTERTAINMENT": null,
+      "EVENT_COUNT": 12,
+      "MEETING_COUNT": "591"
+    }, {
+      "CLIENT_ID": 756,
+      "CLIENT_NAME": "client_756",
+      "LAST_TRADE_DATE": "02/01/2012 00:00:00",
+      "TRADE_VOLUME": "1,307,512,583",
+      "REVENUE": "10,846,684",
+      "TRAVEL_ENTERTAINMENT": 108466.84,
+      "EVENT_COUNT": 12,
+      "MEETING_COUNT": "589"
+    }, {
+      "CLIENT_ID": 1011,
+      "CLIENT_NAME": "client_1011",
+      "LAST_TRADE_DATE": "02/01/2012 00:00:00",
+      "TRADE_VOLUME": "365,133,598",
+      "REVENUE": "2,789,668",
+      "TRAVEL_ENTERTAINMENT": 27896.68,
+      "EVENT_COUNT": 11,
+      "MEETING_COUNT": "556"
+    }, {
+      "CLIENT_ID": 552,
+      "CLIENT_NAME": "client_552",
+      "LAST_TRADE_DATE": "02/01/2012 00:00:00",
+      "TRADE_VOLUME": "4,638,281,973",
+      "REVENUE": "2,367,518",
+      "TRAVEL_ENTERTAINMENT": null,
+      "EVENT_COUNT": 11,
+      "MEETING_COUNT": "554"
+    }
+  ]
+}
