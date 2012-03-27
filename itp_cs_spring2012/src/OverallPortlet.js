@@ -8,6 +8,12 @@ Ext.define('Ext.app.OverallPortlet', {
 	collapsible : true,
 	animCollapse : true,
 	draggable : true,
+	listeners : {
+		updatedata : function(param) {
+			//alert('inside update data..' + param);
+			this.updateData(param);
+		}
+	},
 	tools : [ {
 		type : 'close',
 		handler : function() {
@@ -192,7 +198,28 @@ Ext.define('Ext.app.OverallPortlet', {
 
 		this.callParent(arguments);
 	},
+	// prviate method
+	updateData : function(param) {
+		//alert('calling update data again..' + param);
+		if (param == 'top10ByRevenue') {
+			this._clientAccountData.proxy.url = 'data/Top10ByRevenue.json';
 
+		}
+		if (param == 'bottom10ByRevenue') {
+			this._clientAccountData.proxy.url = 'data/Bottom10ByRevenue.json';
+		}
+		if (param == 'top10ByExpense') {
+			this._clientAccountData.proxy.url = 'data/Top10ByExpense.json';
+
+		}
+		if (param == 'bottom10ByExpense') {
+			this._clientAccountData.proxy.url = 'data/Bottom10ByExpense.json';
+
+		}
+		this._clientAccountData.load();
+		
+
+	},
 	// Override Panel's default doClose to provide a custom fade out effect
 	// when a portlet is removed from the portal
 	doClose : function() {

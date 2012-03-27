@@ -75,6 +75,8 @@ app.Container.createNorthPanel = function() {
 							handler : function() {
 								Ext.getCmp('client_data_widget').fireEvent(
 										'updatedata', 'top10ByRevenue');
+								Ext.getCmp('overall_porlet_widget').fireEvent(
+                    'updatedata', 'top10ByRevenue');
 							}
 						}, {
 							xtype : 'button',
@@ -82,7 +84,8 @@ app.Container.createNorthPanel = function() {
 							handler : function() {
 								Ext.getCmp('client_data_widget').fireEvent(
 										'updatedata', 'bottom10ByRevenue');
-
+                Ext.getCmp('overall_porlet_widget').fireEvent(
+                    'updatedata', 'bottom10ByRevenue');
 							}
 						}, {
               xtype : 'button',
@@ -90,6 +93,9 @@ app.Container.createNorthPanel = function() {
               handler : function() {
                 Ext.getCmp('client_data_widget').fireEvent(
                     'updatedata', 'top10ByExpense');
+                     Ext.getCmp('overall_porlet_widget').fireEvent(
+                    'updatedata', 'top10ByExpense');
+            
 
               }
             }, {
@@ -98,7 +104,9 @@ app.Container.createNorthPanel = function() {
               handler : function() {
                 Ext.getCmp('client_data_widget').fireEvent(
                     'updatedata', 'bottom10ByExpense');
-
+                  Ext.getCmp('overall_porlet_widget').fireEvent(
+                    'updatedata', 'bottom10ByExpense');
+            
               }
             }]
 					}, {
@@ -129,6 +137,11 @@ app.Container.createSouthPanel = function() {
 				id : 'client_data_widget'
 			})
 	_this.coverageWidget = Ext.create('Ext.app.coverageWidget');
+	_this.overallPortletWidget = Ext.create('Ext.app.OverallPortlet',{
+	     datafile : 'data/coverage_top10.json',
+	     id : 'overall_porlet_widget'
+  
+	});
 
 	var cmtSouthPanel = Ext.create('Ext.form.Panel', {
 				renderTo : 'docbody',
@@ -183,9 +196,8 @@ app.Container.createSouthPanel = function() {
 									items : [_this.clientDataWidget,
 											_this.coverageWidget]
 								}, {
-									title : 'Overall',
-									id : 'overall-portlet',
-									xtype : 'overallportlet'
+									id : 'col2',
+									items : [_this.overallPortletWidget]
 								}]
 							}]
 				}
