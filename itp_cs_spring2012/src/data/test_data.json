@@ -1,0 +1,26 @@
+{
+  "Coverage": [
+    {
+      "Type": "Revenue",
+      "Percent_Value": 90,
+      "Actual_Value": "1000000"
+      
+    }, {
+       "Type": "Expense",
+      "Percent_Value": 10,
+      "Actual_Value": "1000000"
+    }, {
+       "Type": "Trade Volume",
+      "Percent_Value": 20,
+      "Actual_Value": "1000000"
+    }, {
+      "Type": "Event Count",
+      "Percent_Value": 30,
+      "Actual_Value": "1000000"
+    }, {
+      "Type": "Meeting Count",
+      "Percent_Value": 40,
+      "Actual_Value": "1000000"
+    }
+  ]
+}

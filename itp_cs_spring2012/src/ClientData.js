@@ -64,7 +64,7 @@ Ext.define('Ext.app.ClientDataWidget', {
 
 			listeners : {
 				updatedata : function(param) {
-					//alert('inside update data..' + param);
+					// alert('inside update data..' + param);
 					this.updateData(param);
 				}
 			},
@@ -96,7 +96,7 @@ Ext.define('Ext.app.ClientDataWidget', {
 				// alert(records.length);
 
 				Ext.apply(this, {
-							height : 500,
+							height : 300,
 							layout : 'fit',
 							store : clientDataStore,
 							stripeRows : true,
@@ -142,22 +142,36 @@ Ext.define('Ext.app.ClientDataWidget', {
 			// prviate method
 			updateData : function(param) {
 				//alert('calling update data again..' + param);
+        var file_url = '';
 				if (param == 'top10ByRevenue') {
-					clientDataStore.proxy.url = 'data/Top10ByRevenue.json';
-
+					file_url = 'data/Top10ByRevenue.json';
 				}
 				if (param == 'bottom10ByRevenue') {
-					clientDataStore.proxy.url = 'data/Bottom10ByRevenue.json';
+					file_url = 'data/Bottom10ByRevenue.json';
 				}
 				if (param == 'top10ByExpense') {
-					clientDataStore.proxy.url = 'data/Top10ByExpense.json';
-
+					file_url = 'data/Top10ByExpense.json';
 				}
 				if (param == 'bottom10ByExpense') {
-					clientDataStore.proxy.url = 'data/Bottom10ByExpense.json';
-
+					file_url = 'data/Bottom10ByExpense.json';
 				}
-				clientDataStore.load();
+			
+				Ext.Ajax.request({
+							url : file_url,
+							success : function($response) {
+								//alert('successs');
+								//_this.el.unmask();
+								var json_data = Ext.decode($response.responseText);
+								//alert(json_data.Coverage);
+							  clientDataStore.loadData(json_data.Coverage);
+							},
+							method : 'GET',
+							failure : function() {
+								_this.el.unmask();
+								alert('Error gettingContact Profile Info');
+							}
+
+						});
 
 			},
 

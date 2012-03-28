@@ -1,8 +1,7 @@
-
 Ext.define('Ext.app.OverallPortlet', {
 	extend : 'Ext.panel.Panel',
 	alias : 'widget.overallportlet',
-
+	title : 'Revenue Breakdown',
 	frame : true,
 	closable : true,
 	collapsible : true,
@@ -10,7 +9,7 @@ Ext.define('Ext.app.OverallPortlet', {
 	draggable : true,
 	listeners : {
 		updatedata : function(param) {
-			//alert('inside update data..' + param);
+			// alert('inside update data..' + param);
 			this.updateData(param);
 		}
 	},
@@ -44,26 +43,9 @@ Ext.define('Ext.app.OverallPortlet', {
 	_nameStr : null,
 	_PieChart : null,
 	_form : null,
-	_clientAccountData : null,
 
 	requires : [ 'Ext.data.JsonStore', 'Ext.chart.theme.Base',
 			'Ext.chart.series.Series', 'Ext.chart.series.Pie' ],
-
-	loadData : function(jsonfile) {
-		var storeData = Ext.create('Ext.data.Store', {
-			model : 'ClientAccount',
-			proxy : {
-				type : 'ajax',
-				url : jsonfile,
-				reader : {
-					type : 'json',
-					root : 'Coverage'
-				}
-			},
-			autoLoad : true
-		});
-		return storeData;
-	},
 
 	genFormComponent : function() {
 		var form = Ext.create('Ext.form.Panel', {
@@ -110,7 +92,7 @@ Ext.define('Ext.app.OverallPortlet', {
 			animate : true,
 			height : 300,
 
-			store : this._clientAccountData,
+			store : clientDataStore,
 			shadow : true,
 			legend : {
 				position : 'left'
@@ -145,7 +127,7 @@ Ext.define('Ext.app.OverallPortlet', {
 								+ ' ('
 								+ Math.round(storeItem.get('Value') / total
 										* 100) + '%)');
-					
+
 						this._gridPop.setSize(480, 130);
 					}
 				},
@@ -183,7 +165,6 @@ Ext.define('Ext.app.OverallPortlet', {
 
 	initComponent : function() {
 
-		this._clientAccountData = this.loadData('data/coverage_top10.json');
 		this._gridPop = this.genGridPop();
 
 		this._PieChart = this.genPieChart();
@@ -200,24 +181,37 @@ Ext.define('Ext.app.OverallPortlet', {
 	},
 	// prviate method
 	updateData : function(param) {
-		//alert('calling update data again..' + param);
+		var file_url = '';
 		if (param == 'top10ByRevenue') {
-			this._clientAccountData.proxy.url = 'data/Top10ByRevenue.json';
-
+			file_url = 'data/Top10ByRevenue.json';
 		}
 		if (param == 'bottom10ByRevenue') {
-			this._clientAccountData.proxy.url = 'data/Bottom10ByRevenue.json';
+			file_url = 'data/Bottom10ByRevenue.json';
 		}
 		if (param == 'top10ByExpense') {
-			this._clientAccountData.proxy.url = 'data/Top10ByExpense.json';
-
+			file_url = 'data/Top10ByExpense.json';
 		}
 		if (param == 'bottom10ByExpense') {
-			this._clientAccountData.proxy.url = 'data/Bottom10ByExpense.json';
-
+			file_url = 'data/Bottom10ByExpense.json';
 		}
-		this._clientAccountData.load();
-		
+
+		Ext.Ajax.request({
+			url : file_url,
+			success : function($response) {
+				// alert('successs');
+				// _this.el.unmask();
+				var json_data = Ext.decode($response.responseText);
+				//alert(json_data.Coverage);
+				//var store = Ext.StoreMgr.lookup('_clientAccountData');
+				clientDataStore.loadData(json_data.Coverage);
+			},
+			method : 'GET',
+			failure : function() {
+				_this.el.unmask();
+				alert('Error gettingContact Profile Info');
+			}
+
+		});
 
 	},
 	// Override Panel's default doClose to provide a custom fade out effect
