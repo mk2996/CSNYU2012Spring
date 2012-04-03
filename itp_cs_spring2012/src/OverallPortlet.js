@@ -104,6 +104,7 @@ Ext.define('Ext.app.OverallPortlet', {
 				field : 'REVENUE',
 				showInLegend : true,
 				donut : false,
+				/*
 				tips : {
 					trackMouse : true,
 					width : 200,
@@ -130,7 +131,7 @@ Ext.define('Ext.app.OverallPortlet', {
 
 						this._gridPop.setSize(480, 130);
 					}
-				},
+				},*/
 				highlight : {
 					segment : {
 						margin : 20
@@ -147,6 +148,7 @@ Ext.define('Ext.app.OverallPortlet', {
 		return pieChart;
 	},
 
+	/*
 	genGridPop : function() {
 		var grid = Ext.create('Ext.grid.Panel', {
 			store : this._gridStore,
@@ -161,11 +163,11 @@ Ext.define('Ext.app.OverallPortlet', {
 			} ]
 		});
 		return grid;
-	},
+	},*/
 
 	initComponent : function() {
 
-		this._gridPop = this.genGridPop();
+		//this._gridPop = this.genGridPop();
 
 		this._PieChart = this.genPieChart();
 		this._form = this.genFormComponent();

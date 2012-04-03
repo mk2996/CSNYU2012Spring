@@ -76,7 +76,9 @@ app.Container.createNorthPanel = function() {
 								Ext.getCmp('client_data_widget').fireEvent(
 										'updatedata', 'top10ByRevenue');
 								Ext.getCmp('overall_porlet_widget').fireEvent(
-                    'updatedata', 'top10ByRevenue');
+										'updatedata', 'top10ByRevenue');
+								Ext.getCmp('coverage_visual_widget').fireEvent(
+										'updatedata', 'top10ByRevenue');
 							}
 						}, {
 							xtype : 'button',
@@ -84,34 +86,37 @@ app.Container.createNorthPanel = function() {
 							handler : function() {
 								Ext.getCmp('client_data_widget').fireEvent(
 										'updatedata', 'bottom10ByRevenue');
-                Ext.getCmp('overall_porlet_widget').fireEvent(
-                     'updatedata', 'bottom10ByRevenue');
-                   Ext.getCmp('coverage_visual_widget').fireEvent(
-                    'updatedata', 'bottom10ByRevenue');    
-                    
+								Ext.getCmp('overall_porlet_widget').fireEvent(
+										'updatedata', 'bottom10ByRevenue');
+								Ext.getCmp('coverage_visual_widget').fireEvent(
+										'updatedata', 'bottom10ByRevenue');
+
 							}
 						}, {
-              xtype : 'button',
-              text : 'Top 10 By Expense',
-              handler : function() {
-                Ext.getCmp('client_data_widget').fireEvent(
-                    'updatedata', 'top10ByExpense');
-                     Ext.getCmp('overall_porlet_widget').fireEvent(
-                    'updatedata', 'top10ByExpense');
-            
+							xtype : 'button',
+							text : 'Top 10 By Expense',
+							handler : function() {
+								Ext.getCmp('client_data_widget').fireEvent(
+										'updatedata', 'top10ByExpense');
+								Ext.getCmp('overall_porlet_widget').fireEvent(
+										'updatedata', 'top10ByExpense');
+								Ext.getCmp('coverage_visual_widget').fireEvent(
+										'updatedata', 'top10ByExpense');
 
-              }
-            }, {
-              xtype : 'button',
-              text : 'Bottom 10 By Expense',
-              handler : function() {
-                Ext.getCmp('client_data_widget').fireEvent(
-                    'updatedata', 'bottom10ByExpense');
-                  Ext.getCmp('overall_porlet_widget').fireEvent(
-                    'updatedata', 'bottom10ByExpense');
-            
-              }
-            }]
+							}
+						}, {
+							xtype : 'button',
+							text : 'Bottom 10 By Expense',
+							handler : function() {
+								Ext.getCmp('client_data_widget').fireEvent(
+										'updatedata', 'bottom10ByExpense');
+								Ext.getCmp('overall_porlet_widget').fireEvent(
+										'updatedata', 'bottom10ByExpense');
+								Ext.getCmp('coverage_visual_widget').fireEvent(
+										'updatedata', 'bottom10ByExpense');
+
+							}
+						}]
 					}, {
 						title : 'Calendar',
 						autoHeight : true,
@@ -139,15 +144,16 @@ app.Container.createSouthPanel = function() {
 				datafile : 'data/coverage2.json',
 				id : 'client_data_widget'
 			})
-			
-	_this.coverageVisualPorletWidget = Ext.create('Ext.app.CoverageVisualPorlet',{
-	   id : 'coverage_visual_widget'
-	});
-	_this.overallPortletWidget = Ext.create('Ext.app.OverallPortlet',{
-	     datafile : 'data/coverage_top10.json',
-	     id : 'overall_porlet_widget'
-  
-	});
+
+	_this.coverageVisualPorletWidget = Ext.create(
+			'Ext.app.CoverageVisualPorlet', {
+				id : 'coverage_visual_widget'
+			});
+	_this.overallPortletWidget = Ext.create('Ext.app.OverallPortlet', {
+				datafile : 'data/coverage_top10.json',
+				id : 'overall_porlet_widget'
+
+			});
 
 	var cmtSouthPanel = Ext.create('Ext.form.Panel', {
 				renderTo : 'docbody',
@@ -192,7 +198,8 @@ app.Container.createSouthPanel = function() {
 								},
 								items : [{
 									id : 'col1',
-									items : [_this.clientDataWidget,_this.coverageVisualPorletWidget]
+									items : [_this.clientDataWidget,
+											_this.coverageVisualPorletWidget]
 								}, {
 									id : 'col2',
 									items : [_this.overallPortletWidget]
@@ -203,5 +210,3 @@ app.Container.createSouthPanel = function() {
 
 	return cmtSouthPanel;
 };
-
-
