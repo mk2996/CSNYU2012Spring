@@ -1,0 +1,14 @@
+{
+  "Coverage": [
+    {
+       "CLIENT_ID": 951,
+      "CLIENT_NAME": "client_951",
+      "LAST_TRADE_DATE": "02/01/2012 00:00:00",
+      "TRADE_VOLUME": "3,356,391,020",
+      "REVENUE": "16,446,015",
+      "TRAVEL_ENTERTAINMENT": 164460.15,
+      "EVENT_COUNT": 22,
+      "MEETING_COUNT": "1,117"
+    }
+  ]
+}

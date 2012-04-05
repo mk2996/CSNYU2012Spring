@@ -88,9 +88,14 @@ Ext.define('Ext.app.CoverageVisualPorlet', {
 		updatedata : function(param) {
 			// alert('inside update data..' + param);
 			this.updateData(param);
+		},
+		updateSingleData : function(param) {
+			// alert('updateSingleData...' + param);
+			this.updateSingleData(param);
 		}
 	},
 	radius : 50,// default radius
+	/*
 	tools : [{
 				type : 'close',
 				handler : function() {
@@ -111,7 +116,7 @@ Ext.define('Ext.app.CoverageVisualPorlet', {
 							});
 
 				}
-			}],
+			}],*/
 
 	cls : 'x-portlet',
 	drawComponent : null,
@@ -126,12 +131,19 @@ Ext.define('Ext.app.CoverageVisualPorlet', {
 				});
 
 		var resource_x_coordinate = drawComponent.width / 2;
-		var y_coordinate = drawComponent.height / 2;
+		var y_coordinate = 70;
+		var x_coordinate = 70;
 		/** REVENUE * */
 		var value = getValue('REVENUE');
 		var benchmark_val = getBenchmarkValue('REVENUE');
-		var revenue_circle = createCircleSprit(this.radius, 50, 50, value,
-				benchmark_val, 'revenue_cir_id', 'REVENUE');
+		var avg_revenue_value = coverageDataStore.average('REVENUE');
+		var std_dev_revenue = calculateStandardDeviation(avg_revenue_value,
+				'REVENUE')
+		// alert(value + ' ' + avg_revenue_value + ' '+std_dev_revenue);
+
+		var revenue_circle = createCircleSprit(this.radius, x_coordinate,
+				y_coordinate, value, benchmark_val, 'revenue_cir_id',
+				'REVENUE', avg_revenue_value, std_dev_revenue);
 		var revenue_text_sprite = createTextSprite(20, 20, 'Revenue\n'
 						+ Ext.util.Format.currency(value, '$', 2),
 				'revenue_text_id');
@@ -141,11 +153,16 @@ Ext.define('Ext.app.CoverageVisualPorlet', {
 		/** TRADE VOLUME * */
 		var tradeVol_value = getValue('TRADE_VOLUME');
 		var tradeVol_benchmark = getBenchmarkValue('TRADE_VOLUME');
-		var tradeVol_circle = createCircleSprit(this.radius, 50, y_coordinate,
-				tradeVol_value, tradeVol_benchmark, 'tradeVol_cir_id',
-				'TRADE_VOLUME');
-		var tradeVol_text_sprite = createTextSprite(20, y_coordinate,
-				'Trade Volume\n'
+		var avg_tradeVol_value = coverageDataStore.average('TRADE_VOLUME');
+		var std_dev_tradeVol = calculateStandardDeviation(avg_revenue_value,
+				'TRADE_VOLUME')
+
+		var tradeVol_circle = createCircleSprit(this.radius, x_coordinate,
+				(y_coordinate * 2.5), tradeVol_value, tradeVol_benchmark,
+				'tradeVol_cir_id', 'TRADE_VOLUME', avg_tradeVol_value,
+				std_dev_tradeVol);
+		var tradeVol_text_sprite = createTextSprite(x_coordinate - this.radius,
+				(y_coordinate * 2.5) - 10, 'Trade Volume\n'
 						+ Ext.util.Format.number(tradeVol_value, '000,000.00'),
 				'tradeVol_text_id');
 		drawComponent.surface.add(tradeVol_circle).show(true);
@@ -154,9 +171,15 @@ Ext.define('Ext.app.CoverageVisualPorlet', {
 		/** TRAVEL & EXPENSE * */
 		var expense_val = getValue('TRAVEL_ENTERTAINMENT');
 		var expense_benchmark = getBenchmarkValue('TRAVEL_ENTERTAINMENT');
+		var avg_expense_value = coverageDataStore
+				.average('TRAVEL_ENTERTAINMENT');
+		var std_dev_expense = calculateStandardDeviation(avg_expense_value,
+				'TRAVEL_ENTERTAINMENT')
+
 		var expense_circle = createCircleSprit(this.radius,
 				resource_x_coordinate, 50, expense_val, expense_benchmark,
-				'expense_cir_id', 'TRAVEL_ENTERTAINMENT');
+				'expense_cir_id', 'TRAVEL_ENTERTAINMENT', avg_expense_value,
+				std_dev_expense);
 		var expense_text_sprite = createTextSprite(resource_x_coordinate - 40,
 				40, 'Travel & Expense\n'
 						+ Ext.util.Format.currency(expense_val, '$', 2),
@@ -167,9 +190,14 @@ Ext.define('Ext.app.CoverageVisualPorlet', {
 		/** MEETING * */
 		var meeting_val = getValue('MEETING_COUNT');
 		var meeting_benchmark = getBenchmarkValue('MEETING_COUNT');
+		var avg_meeting_value = coverageDataStore.average('MEETING_COUNT');
+		var std_dev_meeting = calculateStandardDeviation(avg_meeting_value,
+				'MEETING_COUNT')
+
 		var meeting_circle = createCircleSprit(this.radius,
 				resource_x_coordinate + 100, 120, meeting_val,
-				meeting_benchmark, 'meeting_cir_id', 'MEETING_COUNT');
+				meeting_benchmark, 'meeting_cir_id', 'MEETING_COUNT',
+				avg_meeting_value, std_dev_meeting);
 		var meeting_text_sprite = createTextSprite(resource_x_coordinate + 60,
 				120, 'Meeting Count \n'
 						+ Ext.util.Format.number(meeting_val, '00,000.00'),
@@ -180,9 +208,13 @@ Ext.define('Ext.app.CoverageVisualPorlet', {
 		/** EVENT * */
 		var event_val = getValue('EVENT_COUNT');
 		var event_benchmark = getBenchmarkValue('EVENT_COUNT');
+		var avg_event_value = coverageDataStore.average('EVENT_COUNT');
+		var std_dev_event = calculateStandardDeviation(avg_event_value,
+				'EVENT_COUNT')
+
 		var event_circle = createCircleSprit(this.radius, resource_x_coordinate
 						+ 200, 200, event_val, event_benchmark, 'event_cir_id',
-				'EVENT_COUNT');
+				'EVENT_COUNT', avg_event_value, std_dev_event);
 		var event_text_sprite = createTextSprite(resource_x_coordinate + 160,
 				200, 'Event Count \n'
 						+ Ext.util.Format.number(event_val, '00,000.00'),
@@ -245,6 +277,118 @@ Ext.define('Ext.app.CoverageVisualPorlet', {
 		var y_coordinate = Ext.getCmp('drawComponent').height / 2;
 
 		var value = getValue('REVENUE');
+		var avg_revenue_value = coverageDataStore.average('REVENUE');
+		var std_dev_revenue = calculateStandardDeviation(avg_revenue_value,
+				'REVENUE')
+		var benchmark_val = getBenchmarkValue('REVENUE');
+		var revenue_circle = createCircleSprit(this.radius, 50, 50, value,
+				benchmark_val, 'REVENUE', avg_revenue_value, std_dev_revenue);
+		var revenue_text_sprite = createTextSprite(20, 20, 'Revenue\n'
+						+ Ext.util.Format.currency(value, '$', 2));
+		Ext.getCmp('drawComponent').surface.add(revenue_circle).show(true);
+		Ext.getCmp('drawComponent').surface.add(revenue_text_sprite).show(true);
+
+		/** TRADE VOLUME * */
+		var tradeVol_value = getValue('TRADE_VOLUME');
+		var tradeVol_benchmark = getBenchmarkValue('TRADE_VOLUME');
+		var avg_tradeVol_value = coverageDataStore.average('TRADE_VOLUME');
+		var std_dev_tradeVol = calculateStandardDeviation(avg_revenue_value,
+				'TRADE_VOLUME')
+
+		var tradeVol_circle = createCircleSprit(this.radius, 50, y_coordinate,
+				tradeVol_value, tradeVol_benchmark, 'tradeVol_cir_id',
+				'TRADE_VOLUME', avg_tradeVol_value, std_dev_tradeVol);
+		var tradeVol_text_sprite = createTextSprite(50 - this.radius,
+				y_coordinate, 'Trade Volume\n'
+						+ Ext.util.Format.number(tradeVol_value, '000,000.00'),
+				'tradeVol_text_id');
+		Ext.getCmp('drawComponent').surface.add(tradeVol_circle).show(true);
+		Ext.getCmp('drawComponent').surface.add(tradeVol_text_sprite)
+				.show(true);
+
+		/** TRAVEL & EXPENSE * */
+		var expense_val = getValue('TRAVEL_ENTERTAINMENT');
+		var expense_benchmark = getBenchmarkValue('TRAVEL_ENTERTAINMENT');
+		var avg_expense_value = coverageDataStore
+				.average('TRAVEL_ENTERTAINMENT');
+		var std_dev_expense = calculateStandardDeviation(avg_expense_value,
+				'TRAVEL_ENTERTAINMENT')
+
+		var expense_circle = createCircleSprit(this.radius,
+				resource_x_coordinate, 50, expense_val, expense_benchmark,
+				'expense_cir_id', 'TRAVEL_ENTERTAINMENT');
+		var expense_text_sprite = createTextSprite(resource_x_coordinate - 40,
+				40, 'Travel & Expense\n'
+						+ Ext.util.Format.currency(expense_val, '$', 2),
+				'expense_text_id');
+		Ext.getCmp('drawComponent').surface.add(expense_circle).show(true);
+		Ext.getCmp('drawComponent').surface.add(expense_text_sprite).show(true);
+
+		/** MEETING * */
+		var meeting_val = getValue('MEETING_COUNT');
+		var meeting_benchmark = getBenchmarkValue('MEETING_COUNT');
+		var avg_meeting_value = coverageDataStore.average('MEETING_COUNT');
+		var std_dev_meeting = calculateStandardDeviation(avg_meeting_value,
+				'MEETING_COUNT')
+
+		var meeting_circle = createCircleSprit(this.radius,
+				resource_x_coordinate + 100, 120, meeting_val,
+				meeting_benchmark, 'meeting_cir_id', 'MEETING_COUNT',
+				avg_meeting_value, std_dev_meeting);
+		var meeting_text_sprite = createTextSprite(resource_x_coordinate + 60,
+				120, 'Meeting Count \n'
+						+ Ext.util.Format.number(meeting_val, '0,000.00'),
+				'meeting_text_id');
+		Ext.getCmp('drawComponent').surface.add(meeting_circle).show(true);
+		Ext.getCmp('drawComponent').surface.add(meeting_text_sprite).show(true);
+
+		/** EVENT * */
+		var event_val = getValue('EVENT_COUNT');
+		var event_benchmark = getBenchmarkValue('EVENT_COUNT');
+		var avg_event_value = coverageDataStore.average('EVENT_COUNT');
+    var std_dev_event = calculateStandardDeviation(avg_event_value,
+        'EVENT_COUNT')
+
+		var event_circle = createCircleSprit(this.radius, resource_x_coordinate
+						+ 200, 200, event_val, event_benchmark, 'event_cir_id',
+				'EVENT_COUNT', avg_event_value, std_dev_event);
+		var event_text_sprite = createTextSprite(resource_x_coordinate + 160,
+				200, 'Event Count \n'
+						+ Ext.util.Format.number(event_val, '00,000.00'),
+				'event_text_id');
+		Ext.getCmp('drawComponent').surface.add(event_circle).show(true);
+		Ext.getCmp('drawComponent').surface.add(event_text_sprite).show(true);
+
+	},
+
+	// prviate method
+	updateSingleData : function(param) {
+		// alert('updateSingleData' + param);
+		var file_url = 'data/ClientsJSON/Client' + param + '.json';
+
+		Ext.Ajax.request({
+					url : file_url,
+					success : function($response) {
+						// alert('successs');
+						// _this.el.unmask();
+						var json_data = Ext.decode($response.responseText);
+						// alert(json_data.Coverage);
+						coverageDataStore.loadData(json_data.Coverage);
+					},
+					method : 'GET',
+					failure : function() {
+						_this.el.unmask();
+						alert('Error gettingContact Profile Info');
+					}
+
+				});
+
+		Ext.getCmp('drawComponent').surface.removeAll(true);
+
+		var resource_x_coordinate = Ext.getCmp('drawComponent').width / 2;
+		var y_coordinate = Ext.getCmp('drawComponent').height / 2;
+
+		var value = getValue('REVENUE');
 		var benchmark_val = getBenchmarkValue('REVENUE');
 		var revenue_circle = createCircleSprit(this.radius, 50, 50, value,
 				benchmark_val, 'REVENUE');
@@ -259,8 +403,8 @@ Ext.define('Ext.app.CoverageVisualPorlet', {
 		var tradeVol_circle = createCircleSprit(this.radius, 50, y_coordinate,
 				tradeVol_value, tradeVol_benchmark, 'tradeVol_cir_id',
 				'TRADE_VOLUME');
-		var tradeVol_text_sprite = createTextSprite(20, y_coordinate,
-				'Trade Volume\n'
+		var tradeVol_text_sprite = createTextSprite(50 - this.radius,
+				y_coordinate, 'Trade Volume\n'
 						+ Ext.util.Format.number(tradeVol_value, '000,000.00'),
 				'tradeVol_text_id');
 		Ext.getCmp('drawComponent').surface.add(tradeVol_circle).show(true);
@@ -318,10 +462,10 @@ Ext.define('Ext.app.CoverageVisualPorlet', {
 });
 
 createCircleSprit = function(r, x_coordinate, y_coordinate, value,
-		benchMark_val, sprite_id, fieldname) {
+		benchMark_val, sprite_id, fieldname, avg, std_dev) {
 	// alert('createCircleSprit ' + x_coordinate + ' ' + y_coordinate);
 
-	var circleColor = null;
+	var circleColor = blue;
 	if (fieldname == 'MEETING_COUNT' || fieldname == 'TRAVEL_ENTERTAINMENT'
 			|| fieldname == 'EVENT_COUNT') {
 		if (value > benchMark_val) {
@@ -335,9 +479,53 @@ createCircleSprit = function(r, x_coordinate, y_coordinate, value,
 		}
 	}
 
+	if (fieldname == 'REVENUE' || fieldname == 'TRADE_VOLUME') {
+		if (value > benchMark_val) {
+			circleColor = blue.getDarker(0.09);
+
+		} else if (value == benchMark_val) {
+			circleColor = blue;
+
+		} else if (value < benchMark_val) {
+			circleColor = blue.getLighter(0.09);
+		}
+	}
+
+	var rad = r;
+	var stdev_1 = Number(avg) + Number(std_dev);
+	var stddev_neg_1 = Number(avg) - Number(std_dev);
+	var stdev_2 = Number(avg) + (2 * Number(std_dev));
+	var stddev_neg_2 = Number(avg) - (2 * Number(std_dev));
+
+	// alert(value + ' ' + avg + ' '+stdev_1);
+
+	if ((value >= avg) && (value < stdev_1)) {
+		rad = r + 5;
+	}
+
+	if (value >= stdev_2) {
+		rad = r + 15;
+	}
+
+	if (value <= stddev_neg_2) {
+		rad = r - 15;
+	}
+
+	if (value < avg && value >= stddev_neg_1) {
+		rad = r - 5;
+	}
+
+	if (value >= stdev_1 && value < stdev_2) {
+		rad = r + 10;
+	}
+
+	if (value < stddev_neg_1 && value > stddev_neg_2) {
+		rad = r - 10;
+	}
+	//alert(rad);
 	var circle = new Ext.draw.Sprite({
 				type : 'circle',
-				radius : r,
+				radius : rad,
 				fill : circleColor,
 				x : x_coordinate,
 				y : y_coordinate,
@@ -345,25 +533,24 @@ createCircleSprit = function(r, x_coordinate, y_coordinate, value,
 				listeners : {
 					mouseover : {
 						fn : function() {
-							if (value > 0) {
-							var pieChart = genPieChart(fieldname);
+							if (value != 0) {
+								var pieChart = genPieChart(fieldname);
 
-							var tip = Ext.create('Ext.tip.ToolTip', {
-										items : [pieChart],
-										title : 'Client Account Breakdown By '
-												+ fieldname,
-										layout : {
-											type : 'fit',
-											align : 'stretch'
-										},
-										target : sprite_id,
-										anchor : 'right',
-										closable : true,
-										closeAction : 'hide'
+								var tip = Ext.create('Ext.tip.ToolTip', {
+											items : [pieChart],
+											title : 'Client Account Breakdown By '
+													+ fieldname,
+											layout : {
+												type : 'fit',
+												align : 'stretch'
+											},
+											target : sprite_id,
+											anchor : 'right',
+											closable : true,
+											closeAction : 'hide'
 
-									});
+										});
 
-							
 								tip.show();
 							}
 						}
@@ -385,7 +572,6 @@ createTextSprite = function(x_coordinate, y_coordinate, txtToDisplay,
 				y : y_coordinate,
 				text : txtToDisplay,
 				font : '11px Arial',
-				stroke : '#fff',
 				id : text_sprite_id
 			});
 
@@ -397,9 +583,16 @@ getValue = function(field_name) {
 	var totalValue = 0;
 
 	coverageDataStore.each(function(record) {
-
-				totalValue = totalValue + record.get(field_name);
+				// alert(fieldname + ' ' + record.get(field_name));
+				totalValue = Number(totalValue)
+						+ Number(record.get(field_name));
 			}, this);
+
+	/*
+	 * coverageDataStore.each(function(record) {
+	 * 
+	 * totalValue = totalValue + record.get(field_name); }, this);
+	 */
 
 	return totalValue;
 }
@@ -431,21 +624,7 @@ genPieChart = function(fieldname) {
 				},
 				insetPadding : 10,
 				theme : 'Base:gradients',
-				genGridPop : function() {
-					var grid = Ext.create('Ext.grid.Panel', {
-								store : coverageDataStore,
-								height : 130,
-								width : 480,
-								columns : [{
-											text : 'Client: ',
-											dataIndex : 'CLIENT_NAME'
-										}, {
-											text : fieldname,
-											dataIndex : fieldname
-										}]
-							});
-					return grid;
-				},
+
 				series : [{
 							type : 'pie',
 							field : fieldname,
@@ -465,4 +644,19 @@ genPieChart = function(fieldname) {
 						}]
 			});
 	return pieChart;
+}
+
+calculateStandardDeviation = function(average, fieldname) {
+
+	var deviation_sum = 0;
+	coverageDataStore.each(function(record) {
+				// alert(fieldname + ' ' + record.get(field_name));
+				var temp_dev = record.get(fieldname) - average
+				deviation_sum += (temp_dev * temp_dev);
+			}, this);
+
+	var stddevn = Math.sqrt(deviation_sum / (coverageDataStore.getCount()))
+			.toFixed(2); // 6 decimal places
+	return stddevn;
+
 }

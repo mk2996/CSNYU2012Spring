@@ -13,6 +13,7 @@ Ext.define('Ext.app.OverallPortlet', {
 			this.updateData(param);
 		}
 	},
+	/*
 	tools : [ {
 		type : 'close',
 		handler : function() {
@@ -33,7 +34,7 @@ Ext.define('Ext.app.OverallPortlet', {
 			});
 
 		}
-	} ],
+	} ],*/
 
 	cls : 'x-portlet',
 

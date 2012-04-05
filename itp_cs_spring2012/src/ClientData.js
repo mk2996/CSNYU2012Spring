@@ -61,13 +61,23 @@ Ext.define('Ext.app.ClientDataWidget', {
 			animCollapse : true,
 			draggable : true,
 			id : 'ClientDataDisplay',
+			
 
 			listeners : {
 				updatedata : function(param) {
 					// alert('inside update data..' + param);
 					this.updateData(param);
-				}
+				},
+			   itemclick: function(grid, record, item, rowIndex, event)   {
+              //alert("You clicked row "+rowIndex+record.get('CLIENT_ID'));
+              /*
+              Ext.getCmp('coverage_visual_widget').fireEvent(
+                    'updateSingleData', 'haha');*/
+              Ext.getCmp('coverage_visual_widget').updateSingleData(record.get('CLIENT_ID'));
+          }
 			},
+			
+			/*
 			tools : [{
 						type : 'close',
 						handler : function() {
@@ -85,7 +95,7 @@ Ext.define('Ext.app.ClientDataWidget', {
 							Ext.getCmp(this).show()
 
 						}
-					}],
+					}],*/
 
 			cls : 'x-portlet',
 			initComponent : function() {
@@ -101,6 +111,7 @@ Ext.define('Ext.app.ClientDataWidget', {
 							store : clientDataStore,
 							stripeRows : true,
 							columnLines : true,
+
 							columns : [{
 										text : 'Client',
 										width : 75,
@@ -139,10 +150,20 @@ Ext.define('Ext.app.ClientDataWidget', {
 				this.callParent(arguments);
 			},
 
+			selModel : new Ext.selection.Model({
+						singleSelect : true,
+						 listeners: {
+                     click: function(smObj, rowIndex, record) {
+                         alert('selected row : '+rowIndex)
+                    }
+						 }
+
+					}),
+
 			// prviate method
 			updateData : function(param) {
-				//alert('calling update data again..' + param);
-        var file_url = '';
+				// alert('calling update data again..' + param);
+				var file_url = '';
 				if (param == 'top10ByRevenue') {
 					file_url = 'data/Top10ByRevenue.json';
 				}
@@ -155,15 +176,16 @@ Ext.define('Ext.app.ClientDataWidget', {
 				if (param == 'bottom10ByExpense') {
 					file_url = 'data/Bottom10ByExpense.json';
 				}
-			
+
 				Ext.Ajax.request({
 							url : file_url,
 							success : function($response) {
-								//alert('successs');
-								//_this.el.unmask();
-								var json_data = Ext.decode($response.responseText);
-								//alert(json_data.Coverage);
-							  clientDataStore.loadData(json_data.Coverage);
+								// alert('successs');
+								// _this.el.unmask();
+								var json_data = Ext
+										.decode($response.responseText);
+								// alert(json_data.Coverage);
+								clientDataStore.loadData(json_data.Coverage);
 							},
 							method : 'GET',
 							failure : function() {
