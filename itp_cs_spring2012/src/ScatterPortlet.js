@@ -89,10 +89,10 @@ Ext.define('Ext.app.ScatterPortlet', {
 store1 : Ext.create('Ext.data.JsonStore', {
     fields: ['name', 'xpos', 'ypos', 'value', 'colorset'],
     data: [
-        { 'name': "REVENUE",   'xpos': 80, 'ypos': 120, 'value':36699660, 'colorset': 1 },
+        { 'name': "REVENUE",   'xpos': 100, 'ypos': 120, 'value':36699660, 'colorset': 1 },
         { 'name': "TRADE_VOLUME",   'xpos': 70,  'ypos': 80, 'value':15916642203, 'colorset': 1 },
-        { 'name': "TRAVEL_ENTERTAINMENT", 'xpos': 60,  'ypos': 40, 'value':366996.60, 'colorset': 2 },
-        { 'name': "MEETING_COUNT",  'xpos': 60,  'ypos': 140, 'value':8510, 'colorset': 2},
+        { 'name': "TRAVEL_ENTERTAINMENT", 'xpos': 20,  'ypos': 40, 'value':366996.60, 'colorset': 2 },
+        { 'name': "MEETING_COUNT",  'xpos': 20,  'ypos': 140, 'value':8510, 'colorset': 2},
         { 'name': "EVENT_COUNT",  'xpos': 50, 'ypos': 38, 'value':170, 'colorset': 2 }
     ]
 }),
@@ -108,18 +108,18 @@ store1 : Ext.create('Ext.data.JsonStore', {
 
           axes: false,
           insetPadding: 20,
-          series: [{
+          series: [
+              {
               type: 'scatter',
               axis: false,
               xField: 'xpos',
               yField: 'ypos',
               label: {
                   display: 'middle',
-                  fields: ['name','value'],
+                  field: 'name',
 //                  renderer: function (name) { var record = this.store1.findRecord('name',name);
 //                      return name+"\n"+record.get('value'); },
-                  renderer: function (name,val) {
-//                      this.store1.findRecord('name',name);
+                  renderer: function (name) {
                       return name;},
                   'text-anchor': 'middle',
                   contrast: true
@@ -127,19 +127,48 @@ store1 : Ext.create('Ext.data.JsonStore', {
               renderer: this.createHandler('name'),
               markerCfg: {
                   type: 'circle',
-                  size: 5,
+                  size: 2,
                   fill: '#a00',
                   'stroke-width': 0
               }
-          }]
+          }
+              ,
+              {
+                  type: 'scatter',
+                  axis: false,
+                  xField: 'xpos',
+                  yField: 'ypos',
+                  label: {
+                      display: 'middle',
+                      field: 'value',
+//                  renderer: function (name) { var record = this.store1.findRecord('name',name);
+//                      return name+"\n"+record.get('value'); },
+                      renderer: function (val) {
+                          return " \n "+val;},
+                      'text-anchor': 'middle',
+                      contrast: true
+                  },
+                  renderer: this.createHandler('name'),
+                  markerCfg: {
+                      type: 'circle',
+                      size: 5,
+                      fill: '#a00',
+                      'stroke-width': 0
+                  }
+              }
+
+          ]
       });
       return ScatterChart;
     },
 
     createLabelHandler:function(fieldname){
-        return function(fieldname) {
-            var record = this.store1.findRecord('name',fieldname);
-            return fieldname+"\n"+record.get('value');
+        return function(sprite, record, attr, index, store) {
+            var theText = record.get('name');
+            theText = "\n"+theText;
+            return Ext.apply(attr, {
+                text: theText
+            });
         }
     },
 
