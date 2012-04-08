@@ -79,6 +79,8 @@ app.Container.createNorthPanel = function() {
 										'updatedata', 'top10ByRevenue');
 								Ext.getCmp('coverage_visual_widget').fireEvent(
 										'updatedata', 'top10ByRevenue');
+								window.PageBus.publish("com.cs.cmt.overall.title",
+                                "Client Account Break Down By Top 10 Revenue");
 							}
 						}, {
 							xtype : 'button',
@@ -90,7 +92,8 @@ app.Container.createNorthPanel = function() {
 										'updatedata', 'bottom10ByRevenue');
 								Ext.getCmp('coverage_visual_widget').fireEvent(
 										'updatedata', 'bottom10ByRevenue');
-
+								window.PageBus.publish("com.cs.cmt.overall.title",
+                                "Client Account Break Down By Bottom 10 Revenue");
 							}
 						}, {
 							xtype : 'button',
@@ -102,7 +105,8 @@ app.Container.createNorthPanel = function() {
 										'updatedata', 'top10ByExpense');
 								Ext.getCmp('coverage_visual_widget').fireEvent(
 										'updatedata', 'top10ByExpense');
-
+								window.PageBus.publish("com.cs.cmt.overall.title",
+                                "Client Account Break Down By Top 10 Expense");
 							}
 						}, {
 							xtype : 'button',
@@ -114,7 +118,8 @@ app.Container.createNorthPanel = function() {
 										'updatedata', 'bottom10ByExpense');
 								Ext.getCmp('coverage_visual_widget').fireEvent(
 										'updatedata', 'bottom10ByExpense');
-
+								window.PageBus.publish("com.cs.cmt.overall.title",
+                                "Client Account Break Down By Bottom 10 Expense");
 							}
 						}]
 					}, {
@@ -154,6 +159,12 @@ app.Container.createSouthPanel = function() {
 				id : 'overall_porlet_widget'
 
 			});
+	
+	_this.scatterPortletWidget = Ext.create('Ext.app.ScatterPortlet', {
+        datafile : 'data/coverage_top10.json',
+        id : 'scatter_porlet_widget'
+
+    });
 
 	var cmtSouthPanel = Ext.create('Ext.form.Panel', {
 				renderTo : 'docbody',
@@ -202,7 +213,8 @@ app.Container.createSouthPanel = function() {
 											_this.coverageVisualPorletWidget]
 								}, {
 									id : 'col2',
-									items : [_this.overallPortletWidget]
+									items : [_this.overallPortletWidget
+									         ,_this.scatterPortletWidget]
 								}]
 							}]
 				}
