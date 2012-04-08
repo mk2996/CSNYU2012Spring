@@ -124,15 +124,28 @@ Ext.define('Ext.app.CoverageVisualPorlet', {
 	initComponent : function() {
 
 		var drawComponent = Ext.create('Ext.draw.Component', {
-					width : 500,
+					width : 700,
 					height : 300,
 					renderTo : Ext.getBody(),
 					id : "drawComponent"
 				});
 
 		var resource_x_coordinate = drawComponent.width / 2;
-		var y_coordinate = 70;
-		var x_coordinate = 70;
+		var rev_x = 70;
+		var rev_y = 70;
+
+		var tradeVol_x = 70;
+		var tradeVol_y = 210;
+
+		var expense_x = 200;
+		var expense_y = 70;
+		
+		var meeting_x = 250;
+    var meeting_y = 210;
+
+    var event_x = 400;
+    var event_y = 200;
+
 		/** REVENUE * */
 		var value = getValue('REVENUE');
 		var benchmark_val = getBenchmarkValue('REVENUE');
@@ -141,10 +154,11 @@ Ext.define('Ext.app.CoverageVisualPorlet', {
 				'REVENUE')
 		// alert(value + ' ' + avg_revenue_value + ' '+std_dev_revenue);
 
-		var revenue_circle = createCircleSprit(this.radius, x_coordinate,
-				y_coordinate, value, benchmark_val, 'revenue_cir_id',
-				'REVENUE', avg_revenue_value, std_dev_revenue);
-		var revenue_text_sprite = createTextSprite(20, 20, 'Revenue\n'
+		var revenue_circle = createCircleSprit(this.radius, rev_x,
+				rev_y, value, benchmark_val, 'revenue_cir_id',
+				'REVENUE', avg_revenue_value, std_dev_revenue, false);
+		var revenue_text_sprite = createTextSprite(rev_x - this.radius, rev_y 
+		, 'Revenue\n'
 						+ Ext.util.Format.currency(value, '$', 2),
 				'revenue_text_id');
 		drawComponent.surface.add(revenue_circle).show(true);
@@ -157,12 +171,12 @@ Ext.define('Ext.app.CoverageVisualPorlet', {
 		var std_dev_tradeVol = calculateStandardDeviation(avg_revenue_value,
 				'TRADE_VOLUME')
 
-		var tradeVol_circle = createCircleSprit(this.radius, x_coordinate,
-				(y_coordinate * 2.5), tradeVol_value, tradeVol_benchmark,
+		var tradeVol_circle = createCircleSprit(this.radius, tradeVol_x,
+				tradeVol_y, tradeVol_value, tradeVol_benchmark,
 				'tradeVol_cir_id', 'TRADE_VOLUME', avg_tradeVol_value,
-				std_dev_tradeVol);
-		var tradeVol_text_sprite = createTextSprite(x_coordinate - this.radius,
-				(y_coordinate * 2.5) - 10, 'Trade Volume\n'
+				std_dev_tradeVol, false);
+		var tradeVol_text_sprite = createTextSprite(tradeVol_x - this.radius,
+				tradeVol_y, 'Trade Volume\n'
 						+ Ext.util.Format.number(tradeVol_value, '000,000.00'),
 				'tradeVol_text_id');
 		drawComponent.surface.add(tradeVol_circle).show(true);
@@ -177,11 +191,11 @@ Ext.define('Ext.app.CoverageVisualPorlet', {
 				'TRAVEL_ENTERTAINMENT')
 
 		var expense_circle = createCircleSprit(this.radius,
-				resource_x_coordinate, 50, expense_val, expense_benchmark,
+				expense_x, expense_y, expense_val, expense_benchmark,
 				'expense_cir_id', 'TRAVEL_ENTERTAINMENT', avg_expense_value,
-				std_dev_expense);
-		var expense_text_sprite = createTextSprite(resource_x_coordinate - 40,
-				40, 'Travel & Expense\n'
+				std_dev_expense, false);
+		var expense_text_sprite = createTextSprite(expense_x - 40,
+				expense_y, 'Travel & Expense\n'
 						+ Ext.util.Format.currency(expense_val, '$', 2),
 				'expense_text_id');
 		drawComponent.surface.add(expense_circle).show(true);
@@ -195,11 +209,11 @@ Ext.define('Ext.app.CoverageVisualPorlet', {
 				'MEETING_COUNT')
 
 		var meeting_circle = createCircleSprit(this.radius,
-				resource_x_coordinate + 100, 120, meeting_val,
+				meeting_x, meeting_y, meeting_val,
 				meeting_benchmark, 'meeting_cir_id', 'MEETING_COUNT',
-				avg_meeting_value, std_dev_meeting);
-		var meeting_text_sprite = createTextSprite(resource_x_coordinate + 60,
-				120, 'Meeting Count \n'
+				avg_meeting_value, std_dev_meeting, false);
+		var meeting_text_sprite = createTextSprite(meeting_x - this.radius,
+				meeting_y, 'Meeting Count \n'
 						+ Ext.util.Format.number(meeting_val, '00,000.00'),
 				'meeting_text_id');
 		drawComponent.surface.add(meeting_circle).show(true);
@@ -212,11 +226,10 @@ Ext.define('Ext.app.CoverageVisualPorlet', {
 		var std_dev_event = calculateStandardDeviation(avg_event_value,
 				'EVENT_COUNT')
 
-		var event_circle = createCircleSprit(this.radius, resource_x_coordinate
-						+ 200, 200, event_val, event_benchmark, 'event_cir_id',
-				'EVENT_COUNT', avg_event_value, std_dev_event);
-		var event_text_sprite = createTextSprite(resource_x_coordinate + 160,
-				200, 'Event Count \n'
+		var event_circle = createCircleSprit(this.radius, event_x, event_y, event_val, event_benchmark, 'event_cir_id',
+				'EVENT_COUNT', avg_event_value, std_dev_event, false);
+		var event_text_sprite = createTextSprite(event_x - this.radius,
+				event_y, 'Event Count \n'
 						+ Ext.util.Format.number(event_val, '00,000.00'),
 				'event_text_id');
 		drawComponent.surface.add(event_circle).show(true);
@@ -273,17 +286,33 @@ Ext.define('Ext.app.CoverageVisualPorlet', {
 
 		Ext.getCmp('drawComponent').surface.removeAll(true);
 
-		var resource_x_coordinate = Ext.getCmp('drawComponent').width / 2;
-		var y_coordinate = Ext.getCmp('drawComponent').height / 2;
+		//var resource_x_coordinate = Ext.getCmp('drawComponent').width / 2;
+		//var y_coordinate = Ext.getCmp('drawComponent').height / 2;
+		
+		var rev_x = 70;
+    var rev_y = 70;
+
+    var tradeVol_x = 70;
+    var tradeVol_y = 210;
+
+    var expense_x = 200;
+    var expense_y = 70;
+    
+    var meeting_x = 250;
+    var meeting_y = 210;
+
+    var event_x = 400;
+    var event_y = 200;
+
 
 		var value = getValue('REVENUE');
 		var avg_revenue_value = coverageDataStore.average('REVENUE');
 		var std_dev_revenue = calculateStandardDeviation(avg_revenue_value,
 				'REVENUE')
 		var benchmark_val = getBenchmarkValue('REVENUE');
-		var revenue_circle = createCircleSprit(this.radius, 50, 50, value,
-				benchmark_val, 'REVENUE', avg_revenue_value, std_dev_revenue);
-		var revenue_text_sprite = createTextSprite(20, 20, 'Revenue\n'
+		var revenue_circle = createCircleSprit(this.radius, rev_x, rev_y, value,
+				benchmark_val, 'REVENUE', avg_revenue_value, std_dev_revenue, false);
+		var revenue_text_sprite = createTextSprite(rev_x - this.radius, rev_y, 'Revenue\n'
 						+ Ext.util.Format.currency(value, '$', 2));
 		Ext.getCmp('drawComponent').surface.add(revenue_circle).show(true);
 		Ext.getCmp('drawComponent').surface.add(revenue_text_sprite).show(true);
@@ -295,11 +324,11 @@ Ext.define('Ext.app.CoverageVisualPorlet', {
 		var std_dev_tradeVol = calculateStandardDeviation(avg_revenue_value,
 				'TRADE_VOLUME')
 
-		var tradeVol_circle = createCircleSprit(this.radius, 50, y_coordinate,
+		var tradeVol_circle = createCircleSprit(this.radius, tradeVol_x, tradeVol_y,
 				tradeVol_value, tradeVol_benchmark, 'tradeVol_cir_id',
-				'TRADE_VOLUME', avg_tradeVol_value, std_dev_tradeVol);
-		var tradeVol_text_sprite = createTextSprite(50 - this.radius,
-				y_coordinate, 'Trade Volume\n'
+				'TRADE_VOLUME', avg_tradeVol_value, std_dev_tradeVol, false);
+		var tradeVol_text_sprite = createTextSprite(tradeVol_x- this.radius,
+				tradeVol_y, 'Trade Volume\n'
 						+ Ext.util.Format.number(tradeVol_value, '000,000.00'),
 				'tradeVol_text_id');
 		Ext.getCmp('drawComponent').surface.add(tradeVol_circle).show(true);
@@ -315,10 +344,10 @@ Ext.define('Ext.app.CoverageVisualPorlet', {
 				'TRAVEL_ENTERTAINMENT')
 
 		var expense_circle = createCircleSprit(this.radius,
-				resource_x_coordinate, 50, expense_val, expense_benchmark,
-				'expense_cir_id', 'TRAVEL_ENTERTAINMENT');
-		var expense_text_sprite = createTextSprite(resource_x_coordinate - 40,
-				40, 'Travel & Expense\n'
+				expense_x, expense_y, expense_val, expense_benchmark,
+				'expense_cir_id', 'TRAVEL_ENTERTAINMENT', false);
+		var expense_text_sprite = createTextSprite(expense_x - this.radius,
+				expense_y, 'Travel & Expense\n'
 						+ Ext.util.Format.currency(expense_val, '$', 2),
 				'expense_text_id');
 		Ext.getCmp('drawComponent').surface.add(expense_circle).show(true);
@@ -332,11 +361,11 @@ Ext.define('Ext.app.CoverageVisualPorlet', {
 				'MEETING_COUNT')
 
 		var meeting_circle = createCircleSprit(this.radius,
-				resource_x_coordinate + 100, 120, meeting_val,
+				meeting_x, meeting_y, meeting_val,
 				meeting_benchmark, 'meeting_cir_id', 'MEETING_COUNT',
-				avg_meeting_value, std_dev_meeting);
-		var meeting_text_sprite = createTextSprite(resource_x_coordinate + 60,
-				120, 'Meeting Count \n'
+				avg_meeting_value, std_dev_meeting, false);
+		var meeting_text_sprite = createTextSprite(meeting_x - this.radius,
+				meeting_y, 'Meeting Count \n'
 						+ Ext.util.Format.number(meeting_val, '0,000.00'),
 				'meeting_text_id');
 		Ext.getCmp('drawComponent').surface.add(meeting_circle).show(true);
@@ -346,14 +375,14 @@ Ext.define('Ext.app.CoverageVisualPorlet', {
 		var event_val = getValue('EVENT_COUNT');
 		var event_benchmark = getBenchmarkValue('EVENT_COUNT');
 		var avg_event_value = coverageDataStore.average('EVENT_COUNT');
-    var std_dev_event = calculateStandardDeviation(avg_event_value,
-        'EVENT_COUNT')
+		var std_dev_event = calculateStandardDeviation(avg_event_value,
+				'EVENT_COUNT')
 
-		var event_circle = createCircleSprit(this.radius, resource_x_coordinate
-						+ 200, 200, event_val, event_benchmark, 'event_cir_id',
-				'EVENT_COUNT', avg_event_value, std_dev_event);
-		var event_text_sprite = createTextSprite(resource_x_coordinate + 160,
-				200, 'Event Count \n'
+		var event_circle = createCircleSprit(this.radius, event_x, event_y, 
+		    event_val, event_benchmark, 'event_cir_id',
+				'EVENT_COUNT', avg_event_value, std_dev_event, false);
+		var event_text_sprite = createTextSprite(event_x - this.radius,
+				event_y, 'Event Count \n'
 						+ Ext.util.Format.number(event_val, '00,000.00'),
 				'event_text_id');
 		Ext.getCmp('drawComponent').surface.add(event_circle).show(true);
@@ -377,7 +406,7 @@ Ext.define('Ext.app.CoverageVisualPorlet', {
 					},
 					method : 'GET',
 					failure : function() {
-						_this.el.unmask();
+						//_this.el.unmask();
 						alert('Error gettingContact Profile Info');
 					}
 
@@ -385,14 +414,29 @@ Ext.define('Ext.app.CoverageVisualPorlet', {
 
 		Ext.getCmp('drawComponent').surface.removeAll(true);
 
-		var resource_x_coordinate = Ext.getCmp('drawComponent').width / 2;
-		var y_coordinate = Ext.getCmp('drawComponent').height / 2;
+		//var resource_x_coordinate = Ext.getCmp('drawComponent').width / 2;
+		//var y_coordinate = Ext.getCmp('drawComponent').height / 2;
+		
+		var rev_x = 70;
+    var rev_y = 70;
+
+    var tradeVol_x = 70;
+    var tradeVol_y = 210;
+
+    var expense_x = 200;
+    var expense_y = 70;
+    
+    var meeting_x = 250;
+    var meeting_y = 210;
+
+    var event_x = 400;
+    var event_y = 200;
 
 		var value = getValue('REVENUE');
 		var benchmark_val = getBenchmarkValue('REVENUE');
-		var revenue_circle = createCircleSprit(this.radius, 50, 50, value,
-				benchmark_val, 'REVENUE');
-		var revenue_text_sprite = createTextSprite(20, 20, 'Revenue\n'
+		var revenue_circle = createCircleSprit(this.radius, rev_x, rev_y, value,
+				benchmark_val, 'REVENUE', true);
+		var revenue_text_sprite = createTextSprite(rev_x - this.radius, rev_y, 'Revenue\n'
 						+ Ext.util.Format.currency(value, '$', 2));
 		Ext.getCmp('drawComponent').surface.add(revenue_circle).show(true);
 		Ext.getCmp('drawComponent').surface.add(revenue_text_sprite).show(true);
@@ -400,11 +444,11 @@ Ext.define('Ext.app.CoverageVisualPorlet', {
 		/** TRADE VOLUME * */
 		var tradeVol_value = getValue('TRADE_VOLUME');
 		var tradeVol_benchmark = getBenchmarkValue('TRADE_VOLUME');
-		var tradeVol_circle = createCircleSprit(this.radius, 50, y_coordinate,
+		var tradeVol_circle = createCircleSprit(this.radius, tradeVol_x, tradeVol_y,
 				tradeVol_value, tradeVol_benchmark, 'tradeVol_cir_id',
-				'TRADE_VOLUME');
-		var tradeVol_text_sprite = createTextSprite(50 - this.radius,
-				y_coordinate, 'Trade Volume\n'
+				'TRADE_VOLUME', true);
+		var tradeVol_text_sprite = createTextSprite(tradeVol_x - this.radius,
+				tradeVol_y, 'Trade Volume\n'
 						+ Ext.util.Format.number(tradeVol_value, '000,000.00'),
 				'tradeVol_text_id');
 		Ext.getCmp('drawComponent').surface.add(tradeVol_circle).show(true);
@@ -415,10 +459,10 @@ Ext.define('Ext.app.CoverageVisualPorlet', {
 		var expense_val = getValue('TRAVEL_ENTERTAINMENT');
 		var expense_benchmark = getBenchmarkValue('TRAVEL_ENTERTAINMENT');
 		var expense_circle = createCircleSprit(this.radius,
-				resource_x_coordinate, 50, expense_val, expense_benchmark,
-				'expense_cir_id', 'TRAVEL_ENTERTAINMENT');
-		var expense_text_sprite = createTextSprite(resource_x_coordinate - 40,
-				40, 'Travel & Expense\n'
+				expense_x, expense_y, expense_val, expense_benchmark,
+				'expense_cir_id', 'TRAVEL_ENTERTAINMENT', true);
+		var expense_text_sprite = createTextSprite(expense_x - this.radius,
+				expense_y, 'Travel & Expense\n'
 						+ Ext.util.Format.currency(expense_val, '$', 2),
 				'expense_text_id');
 		Ext.getCmp('drawComponent').surface.add(expense_circle).show(true);
@@ -428,10 +472,10 @@ Ext.define('Ext.app.CoverageVisualPorlet', {
 		var meeting_val = getValue('MEETING_COUNT');
 		var meeting_benchmark = getBenchmarkValue('MEETING_COUNT');
 		var meeting_circle = createCircleSprit(this.radius,
-				resource_x_coordinate + 100, 120, meeting_val,
-				meeting_benchmark, 'meeting_cir_id', 'MEETING_COUNT');
-		var meeting_text_sprite = createTextSprite(resource_x_coordinate + 60,
-				120, 'Meeting Count \n'
+				meeting_x, meeting_y, meeting_val,
+				meeting_benchmark, 'meeting_cir_id', 'MEETING_COUNT', true);
+		var meeting_text_sprite = createTextSprite(meeting_x - this.radius,
+				meeting_y, 'Meeting Count \n'
 						+ Ext.util.Format.number(meeting_val, '0,000.00'),
 				'meeting_text_id');
 		Ext.getCmp('drawComponent').surface.add(meeting_circle).show(true);
@@ -440,11 +484,10 @@ Ext.define('Ext.app.CoverageVisualPorlet', {
 		/** EVENT * */
 		var event_val = getValue('EVENT_COUNT');
 		var event_benchmark = getBenchmarkValue('EVENT_COUNT');
-		var event_circle = createCircleSprit(this.radius, resource_x_coordinate
-						+ 200, 200, event_val, event_benchmark, 'event_cir_id',
-				'EVENT_COUNT');
-		var event_text_sprite = createTextSprite(resource_x_coordinate + 160,
-				200, 'Event Count \n'
+		var event_circle = createCircleSprit(this.radius, event_x,event_y, event_val, event_benchmark, 'event_cir_id',
+				'EVENT_COUNT', true);
+		var event_text_sprite = createTextSprite(event_x - this.radius,
+				event_y, 'Event Count \n'
 						+ Ext.util.Format.number(event_val, '00,000.00'),
 				'event_text_id');
 		Ext.getCmp('drawComponent').surface.add(event_circle).show(true);
@@ -462,7 +505,7 @@ Ext.define('Ext.app.CoverageVisualPorlet', {
 });
 
 createCircleSprit = function(r, x_coordinate, y_coordinate, value,
-		benchMark_val, sprite_id, fieldname, avg, std_dev) {
+		benchMark_val, sprite_id, fieldname, avg, std_dev, singleClient) {
 	// alert('createCircleSprit ' + x_coordinate + ' ' + y_coordinate);
 
 	var circleColor = blue;
@@ -480,14 +523,15 @@ createCircleSprit = function(r, x_coordinate, y_coordinate, value,
 	}
 
 	if (fieldname == 'REVENUE' || fieldname == 'TRADE_VOLUME') {
+	   
 		if (value > benchMark_val) {
-			circleColor = blue.getDarker(0.09);
+			circleColor = blue.getDarker(0.15);
 
 		} else if (value == benchMark_val) {
 			circleColor = blue;
 
 		} else if (value < benchMark_val) {
-			circleColor = blue.getLighter(0.09);
+			circleColor = blue.getLighter(0.15);
 		}
 	}
 
@@ -533,7 +577,7 @@ createCircleSprit = function(r, x_coordinate, y_coordinate, value,
 				listeners : {
 					mouseover : {
 						fn : function() {
-							if (value != 0) {
+							if (value != 0  && singleClient == false) {
 								var pieChart = genPieChart(fieldname);
 
 								var tip = Ext.create('Ext.tip.ToolTip', {

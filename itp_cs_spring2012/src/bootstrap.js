@@ -75,10 +75,10 @@ app.Container.createNorthPanel = function() {
 							handler : function() {
 								Ext.getCmp('client_data_widget').fireEvent(
 										'updatedata', 'top10ByRevenue');
-								Ext.getCmp('overall_porlet_widget').fireEvent(
-										'updatedata', 'top10ByRevenue');
-								Ext.getCmp('coverage_visual_widget').fireEvent(
-										'updatedata', 'top10ByRevenue');
+//								Ext.getCmp('overall_porlet_widget').fireEvent(
+//										'updatedata', 'top10ByRevenue');
+//								Ext.getCmp('coverage_visual_widget').fireEvent(
+//										'updatedata', 'top10ByRevenue');
 								window.PageBus.publish("com.cs.cmt.overall.title",
                                 "Client Account Break Down By Top 10 Revenue");
 							}
@@ -88,10 +88,10 @@ app.Container.createNorthPanel = function() {
 							handler : function() {
 								Ext.getCmp('client_data_widget').fireEvent(
 										'updatedata', 'bottom10ByRevenue');
-								Ext.getCmp('overall_porlet_widget').fireEvent(
-										'updatedata', 'bottom10ByRevenue');
-								Ext.getCmp('coverage_visual_widget').fireEvent(
-										'updatedata', 'bottom10ByRevenue');
+//								Ext.getCmp('overall_porlet_widget').fireEvent(
+//										'updatedata', 'bottom10ByRevenue');
+//								Ext.getCmp('coverage_visual_widget').fireEvent(
+//										'updatedata', 'bottom10ByRevenue');
 								window.PageBus.publish("com.cs.cmt.overall.title",
                                 "Client Account Break Down By Bottom 10 Revenue");
 							}
@@ -101,10 +101,10 @@ app.Container.createNorthPanel = function() {
 							handler : function() {
 								Ext.getCmp('client_data_widget').fireEvent(
 										'updatedata', 'top10ByExpense');
-								Ext.getCmp('overall_porlet_widget').fireEvent(
-										'updatedata', 'top10ByExpense');
-								Ext.getCmp('coverage_visual_widget').fireEvent(
-										'updatedata', 'top10ByExpense');
+//								Ext.getCmp('overall_porlet_widget').fireEvent(
+//										'updatedata', 'top10ByExpense');
+//								Ext.getCmp('coverage_visual_widget').fireEvent(
+//										'updatedata', 'top10ByExpense');
 								window.PageBus.publish("com.cs.cmt.overall.title",
                                 "Client Account Break Down By Top 10 Expense");
 							}
@@ -114,10 +114,10 @@ app.Container.createNorthPanel = function() {
 							handler : function() {
 								Ext.getCmp('client_data_widget').fireEvent(
 										'updatedata', 'bottom10ByExpense');
-								Ext.getCmp('overall_porlet_widget').fireEvent(
-										'updatedata', 'bottom10ByExpense');
-								Ext.getCmp('coverage_visual_widget').fireEvent(
-										'updatedata', 'bottom10ByExpense');
+//								Ext.getCmp('overall_porlet_widget').fireEvent(
+//										'updatedata', 'bottom10ByExpense');
+//								Ext.getCmp('coverage_visual_widget').fireEvent(
+//										'updatedata', 'bottom10ByExpense');
 								window.PageBus.publish("com.cs.cmt.overall.title",
                                 "Client Account Break Down By Bottom 10 Expense");
 							}
@@ -150,15 +150,15 @@ app.Container.createSouthPanel = function() {
 				id : 'client_data_widget'
 			})
 
-	_this.coverageVisualPorletWidget = Ext.create(
-			'Ext.app.CoverageVisualPorlet', {
-				id : 'coverage_visual_widget'
-			});
-	_this.overallPortletWidget = Ext.create('Ext.app.OverallPortlet', {
-				datafile : 'data/coverage_top10.json',
-				id : 'overall_porlet_widget'
-
-			});
+//	_this.coverageVisualPorletWidget = Ext.create(
+//			'Ext.app.CoverageVisualPorlet', {
+//				id : 'coverage_visual_widget'
+//			});
+//	_this.overallPortletWidget = Ext.create('Ext.app.OverallPortlet', {
+//				datafile : 'data/coverage_top10.json',
+//				id : 'overall_porlet_widget'
+//
+//			});
 	
 	_this.scatterPortletWidget = Ext.create('Ext.app.ScatterPortlet', {
         datafile : 'data/coverage_top10.json',
@@ -209,12 +209,10 @@ app.Container.createSouthPanel = function() {
 								},
 								items : [{
 									id : 'col1',
-									items : [_this.clientDataWidget,
-											_this.coverageVisualPorletWidget]
+									items : [_this.clientDataWidget]
 								}, {
 									id : 'col2',
-									items : [_this.overallPortletWidget
-									         ,_this.scatterPortletWidget]
+									items : [_this.scatterPortletWidget]
 								}]
 							}]
 				}
