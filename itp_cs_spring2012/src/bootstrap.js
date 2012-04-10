@@ -75,6 +75,8 @@ app.Container.createNorthPanel = function() {
 							handler : function() {
 								Ext.getCmp('client_data_widget').fireEvent(
 										'updatedata', 'top10ByRevenue');
+								Ext.getCmp('scatter_porlet_widget').fireEvent(
+                    'updatedata', 'top10ByRevenue');
 //								Ext.getCmp('overall_porlet_widget').fireEvent(
 //										'updatedata', 'top10ByRevenue');
 //								Ext.getCmp('coverage_visual_widget').fireEvent(
@@ -88,10 +90,8 @@ app.Container.createNorthPanel = function() {
 							handler : function() {
 								Ext.getCmp('client_data_widget').fireEvent(
 										'updatedata', 'bottom10ByRevenue');
-//								Ext.getCmp('overall_porlet_widget').fireEvent(
-//										'updatedata', 'bottom10ByRevenue');
-//								Ext.getCmp('coverage_visual_widget').fireEvent(
-//										'updatedata', 'bottom10ByRevenue');
+								Ext.getCmp('scatter_porlet_widget').fireEvent(
+                    'updatedata', 'bottom10ByRevenue');
 								window.PageBus.publish("com.cs.cmt.overall.title",
                                 "Client Account Break Down By Bottom 10 Revenue");
 							}
@@ -101,10 +101,8 @@ app.Container.createNorthPanel = function() {
 							handler : function() {
 								Ext.getCmp('client_data_widget').fireEvent(
 										'updatedata', 'top10ByExpense');
-//								Ext.getCmp('overall_porlet_widget').fireEvent(
-//										'updatedata', 'top10ByExpense');
-//								Ext.getCmp('coverage_visual_widget').fireEvent(
-//										'updatedata', 'top10ByExpense');
+								  Ext.getCmp('scatter_porlet_widget').fireEvent(
+                    'updatedata', 'top10ByExpense');
 								window.PageBus.publish("com.cs.cmt.overall.title",
                                 "Client Account Break Down By Top 10 Expense");
 							}
@@ -114,10 +112,8 @@ app.Container.createNorthPanel = function() {
 							handler : function() {
 								Ext.getCmp('client_data_widget').fireEvent(
 										'updatedata', 'bottom10ByExpense');
-//								Ext.getCmp('overall_porlet_widget').fireEvent(
-//										'updatedata', 'bottom10ByExpense');
-//								Ext.getCmp('coverage_visual_widget').fireEvent(
-//										'updatedata', 'bottom10ByExpense');
+								  Ext.getCmp('scatter_porlet_widget').fireEvent(
+                    'updatedata', 'bottom10ByExpense');
 								window.PageBus.publish("com.cs.cmt.overall.title",
                                 "Client Account Break Down By Bottom 10 Expense");
 							}
