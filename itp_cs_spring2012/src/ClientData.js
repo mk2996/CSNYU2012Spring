@@ -74,6 +74,7 @@ Ext.define('Ext.app.ClientDataWidget', {
               Ext.getCmp('coverage_visual_widget').fireEvent(
                     'updateSingleData', 'haha');*/
               Ext.getCmp('coverage_visual_widget').updateSingleData(record.get('CLIENT_ID'));
+              Ext.getCmp('scatter_porlet_widget').generateScatterPlotForClient(record.get('CLIENT_ID'));
           }
 			},
 			
